@@ -1,0 +1,56 @@
+<h1>{{title}}</h1>
+{{!-- <p>Creator: <b> {{recipe.creator.fullName}} </b></p>
+<hr /> --}}
+<h3>Description:</h3>
+<p> {{introduction}}</p>
+<hr />
+<img src="{{imageUrl}}" alt="" width="300" />
+
+{{!-- {{#if isCreator}}
+  <button id="toggle-button">Update recipe details</button>
+
+  <form action="/recipes/edit/{{room._id}}/" method="post" id="edit-form">
+    <label for="">Name</label>
+    <input type="text" name="name" id="" value="{{recipe.name}}" />
+
+    <label for="">Description</label>
+    <textarea name="description" id="" cols="30" rows="10">
+      {{recipe.description}}
+    </textarea>
+
+    <img src="{{recipe.imageUrl}}" alt="" width="200" />
+    <label for="">Upload new image</label>
+    <input type="text" name="imageUrl" id="" value="{{recipe.imageUrl}}" />
+
+    <button type="submit">Save changes</button>
+  </form>
+  <br />
+  <form action="/recipes/delete/{{recipe._id}}" method="post">
+    <button type="submit">Delete this recipe</button>
+  </form>
+{{/if}}
+
+{{! if there are reviews, show them, if not, forget about it 🙃 }}
+{{#if recipe.reviews}}
+  <h3>Reviews:</h3>
+  {{#each recipe.reviews}}
+    <p> <b>{{this.user.fullName}} said: </b> {{this.comment}} </p>
+    {{#if this.canBeChanged}}
+      <a href="/reviews/{{this._id}}">Edit</a>
+      <form action="/reviews/{{this._id}}" method="POST">
+        <button type="submit"> Delete </button>
+      </form>
+    {{/if}}
+  {{/each}}
+{{/if}} --}}
+
+<hr />
+{{! USER CAN NOT LEAVE REVIEWS ON THEIR OWN PROPERTIES }}
+{{! this means that only if the user IS NOT the owner, this form will be shown }}
+{{!-- {{#if isNotOwner}}
+  <h2>Add a review:</h2>
+  <form action="/reviews/create/{{recipe._id}}" method="POST">
+    <textarea name="comment" id="" cols="10" rows="5"></textarea>
+    <button type="submit">Add</button>
+  </form>
+{{/if}} --}}

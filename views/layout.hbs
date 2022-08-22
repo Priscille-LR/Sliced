@@ -1,19 +1,37 @@
-<!DOCTYPE html>
 <html lang="en">
 
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>{{appTitle}}</title>
-      <link rel="stylesheet" href="/stylesheets/style.css" />
-   </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{{appTitle}}</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
 
-   <body>
+  <body>
 
-      {{{body}}}
+    {{!-- {{#if loggedInNavigation}} --}}
+      <nav>
+        <ul>
+          <li><a href="/recipes/list">View Recipess</a></li>
+          <li><a href="/recipes/create">Create a recipe</a></li>
+            </form>
+            </ul>
+            </nav>
+          {{!-- </li>
+        </ul>
+      </nav>
+    {{else}}
+      <nav>
+        <ul>
+          <li><a href="/recipes/list">View Recipes</a></li>
+        </ul>
+      </nav>
+    {{/if}} --}}
 
-      <script src="/js/script.js"></script>
-   </body>
+    {{{body}}}
+
+    <script src="/js/script.js"></script>
+  </body>
 
 </html>
