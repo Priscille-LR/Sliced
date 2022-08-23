@@ -10,10 +10,6 @@ router.get('/signup', isLoggedOut, (req, res) => {
   res.render('auth/signup');
 });
 
-router.get('/profile', isLoggedIn, (req, res) => {
-  const { username } = req.session.currentUser;
-  res.render('auth/profile', { username });
-});
 
 router.post('/signup', isLoggedOut, (req, res) => {
   const { email, password, username } = req.body;
@@ -31,15 +27,13 @@ router.post('/signup', isLoggedOut, (req, res) => {
     //console.log(`Password hash: ${hashedPassword}`);
     return User.create({
         email,
-        password: hashedPassword,
-        fullName,
-        slackID,
-        googleID
+        username,
+        password: hashedPassword
     });
   })
   .then((user) => {
     //console.log('Newly created user is: ', userFromDB);
-    req.session.user = user;
+    req.session.currentUser = user;
     //res.render('auth/profile', {user})
     res.redirect('/auth/profile');
     //res.redirect('/auth/login');
@@ -47,7 +41,11 @@ router.post('/signup', isLoggedOut, (req, res) => {
   .catch((error) => console.log(error));
 });
 
-
+router.get('/profile', isLoggedIn, (req, res) => {
+  const { username } = req.session.currentUser;
+  res.render('auth/profile', { username });
+  //res.render('auth/profile');
+});
 
 
 //LOGIN
@@ -61,7 +59,7 @@ router.post('/login', isLoggedOut, (req, res) => {
     const { email, password } = req.body;
   
     if (!email || !password ) {
-      res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
+      res.render('auth/login', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
       return;
     }
   
@@ -87,7 +85,7 @@ router.post('/login', isLoggedOut, (req, res) => {
 //LOGOUT
 router.post('/logout', isLoggedIn, (req, res) => {
     res.clearCookie('connect.sid')
-    req.session.destroy(() => res.redirect('/'))
+    req.session.destroy(() => res.redirect('/auth/login'))
 })
 
 module.exports = router;

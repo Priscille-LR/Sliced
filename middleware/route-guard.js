@@ -12,8 +12,16 @@ const isLoggedOut = (req, res, next) => {
   next();
 };
 
+const isOwner = (req, res, next) => {
+  if(!req.session.currentUser._id === req.params.roomId){
+   res.redirect('/')
+  }
+  next()
+}
+
 
 module.exports = {
   isLoggedIn,
-  isLoggedOut
+  isLoggedOut,
+  isOwner
 };
