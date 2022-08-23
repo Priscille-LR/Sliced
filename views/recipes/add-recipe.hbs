@@ -1,37 +1,39 @@
 <h1>Create a new recipe</h1>
 <form action="/recipes/create" method="POST">
   <label for="">Title</label>
-  <input type="text" name="title" id="" />
+  <input type="text" name="title" id="title" />
 
   <label for="level">Level</label>
   <select name="level" id="level">
+    <option value="">--</option>
     <option value="easy">Easy</option>
     <option value="medium">Medium</option>
     <option value="pro">Pro</option>
   </select>
 
-  <label for="">Introduction</label>
-  <textarea name="introduction" id="" cols="30" rows="10"></textarea>
-
-  <label for="">Servings</label>
-  <input type="number" name="servings" id="" />
+  <label for="">Serves</label>
+  <input type="number" name="servings" id="servings" />
 
   <label for="">Duration</label>
-  <input type="number" name="duration" id="" />
+  <input type="number" name="duration" id="duration" />
 
   <label for="dishType">Dish type</label>
   <select name="dishType" id="dishType">
-    <option value="breakfast">breakfast</option>
-    <option value="main_course">main course</option>
-    <option value="side">side</option>
-    <option value="snack">snack</option>
-    <option value="drink">drink</option>
-    <option value="dessert">dessert</option>
-    <option value="other">other</option>
+    <option value="">--</option>
+    <option value='breakfast'>Breakfast</option>
+    <option value='dessert'>Dessert</option>
+    <option value='drink'>Drink</option>
+    <option value='main_course'>Main course</option>
+    <option value='side'>Side</option>
+    <option value='snack'>Snack</option>
+    <option value='other'>Other</option>
   </select>
 
   <label for="">Image</label>
-  <input type="text" name="imageUrl" id="" />
+  <input type="text" name="image" id="image" />
+
+  <label for="">Introduction</label>
+  <textarea name="introduction" id="" cols="30" rows="10"></textarea>
 
   <label for="">Ingredients</label>
   <textarea name="ingredients" id="ingredients" cols="30" rows="10"></textarea>

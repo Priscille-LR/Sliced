@@ -27,7 +27,7 @@ router.post("/create", isLoggedIn, (req, res) => {
     servings,
     duration,
     dishType,
-    imageUrl,
+    image,
     ingredients,
     instructions,
   } = req.body;
@@ -40,7 +40,7 @@ router.post("/create", isLoggedIn, (req, res) => {
     servings,
     duration,
     dishType,
-    imageUrl,
+    image,
     ingredients,
     instructions,
     creator: _id,
@@ -54,7 +54,6 @@ router.post("/create", isLoggedIn, (req, res) => {
 router.get("/:recipeId", (req, res) => {
   const  _id = req.session?.currentUser?._id; // load property '_id' only if property 'currentUser' exists
   const { recipeId } = req.params;
-  console.log(recipeId)
   Recipe.findOne({ _id: recipeId })
   .populate("creator")
 //.populate({
@@ -67,8 +66,8 @@ router.get("/:recipeId", (req, res) => {
   .then((recipe) => {
     console.log(recipe)
   const loggedInNavigation = req.session.hasOwnProperty("currentUser"); 
-//   console.log(_id)
-//   console.log(recipe.creator)
+   //console.log(_id)
+   //console.log(recipe.creator)
   const isNotCreator = _id !== recipe.creator._id.toString() && req.session.hasOwnProperty("currentUser");
   res.render("recipes/recipe-details", {recipe, isNotCreator, loggedInNavigation})
   })
@@ -83,25 +82,31 @@ router.get("/:recipeId", (req, res) => {
 //     .catch((error) => `Error while creating a new book: ${error}`);
 // });
 
-router.get("/edit/:recipeId", (req, res) => {
+router.get('/edit/:recipeId', (req, res) => {
   const loggedInNavigation = true;
-  res.render("recipes/edit-recipe", {loggedInNavigation});
+  const { recipeId } = req.params;
+  Recipe.findOne({ _id: recipeId })
+    .populate('creator')
+    .then((recipe) => {
+      res.render('recipes/edit-recipe', { recipe, loggedInNavigation });
+    })
+    .catch((err) => console.error(err));
 });
 
-router.post("/edit/:id", isCreator, (req, res) => {
-  const { id } = req.params;
+router.post("/edit/:recipeId", isCreator, (req, res) => {
+  const { recipeId } = req.params;
   const recipeUpdateInfo = req.body;
 
-  Recipe.findByIdAndUpdate(id, recipeUpdateInfo, { new: true })
+  Recipe.findByIdAndUpdate(recipeId, recipeUpdateInfo, { new: true })
     .then(() => {
       res.redirect("/recipes/list");
     })
     .catch((err) => console.error(err));
 });
 
-router.post("/delete/:id", isCreator, (req, res) => {
-  const { id } = req.params;
-  Recipe.findByIdAndDelete(id)
+router.post("/delete/:recipeId", isCreator, (req, res) => {
+  const { recipeId } = req.params;
+  Recipe.findByIdAndDelete(recipeId)
     .then(() => res.redirect("/recipes/list"))
     .catch((err) => console.error(err));
 });

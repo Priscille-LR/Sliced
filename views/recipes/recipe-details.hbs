@@ -1,37 +1,41 @@
 <h1>{{recipe.title}}</h1>
 <p>Posted by: {{recipe.creator.username}}</p>
 
-<h3>Description:</h3>
+<span>🕒 {{recipe.duration}} mins</span>
+<span>Serves: {{recipe.servings}}</span>
+<span>{{recipe.dishType}}</span>
 <p> {{recipe.introduction}}</p>
-<hr />
-<img src="{{recipe.image}}" alt="" width="300" />
 
-{{!-- {{#if isCreator}}
-  <button id="toggle-button">Update recipe details</button>
+<img src="{{recipe.image}}" alt=""/>
 
-  <form action="/recipes/edit/{{room._id}}/" method="post" id="edit-form">
-    <label for="">Name</label>
-    <input type="text" name="name" id="" value="{{recipe.name}}" />
+<article>
+  <h2>Ingredients</h2>
+  <ul>
+    {{#each recipe.ingredients}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+</article>
 
-    <label for="">Description</label>
-    <textarea name="description" id="" cols="30" rows="10">
-      {{recipe.description}}
-    </textarea>
+<article>
+  <h2>Directions</h2>
+  <ol>
+    {{#each recipe.instructions}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ol>
+</article>
 
-    <img src="{{recipe.imageUrl}}" alt="" width="200" />
-    <label for="">Upload new image</label>
-    <input type="text" name="imageUrl" id="" value="{{recipe.imageUrl}}" />
-
-    <button type="submit">Save changes</button>
-  </form>
-  <br />
-  <form action="/recipes/delete/{{recipe._id}}" method="post">
-    <button type="submit">Delete this recipe</button>
-  </form>
-{{/if}}
+{{!-- only shows if you're the creator  --}}
+{{#unless isNotCreator}} 
+<a href="/recipes/edit/{{recipe._id}}">Update recipe details</a>
+<form action='/recipes/delete/{{recipe._id}}' method='post'>
+  <button type='submit'>Delete this recipe</button>
+</form>
+{{/unless}}
 
 {{! if there are reviews, show them, if not, forget about it 🙃 }}
-{{#if recipe.reviews}}
+{{!-- {{#if recipe.reviews}}
   <h3>Reviews:</h3>
   {{#each recipe.reviews}}
     <p> <b>{{this.user.fullName}} said: </b> {{this.comment}} </p>
@@ -45,12 +49,12 @@
 {{/if}} --}}
 
 <hr />
-{{! USER CAN NOT LEAVE REVIEWS ON THEIR OWN PROPERTIES }}
-{{! this means that only if the user IS NOT the owner, this form will be shown }}
-{{!-- {{#if isNotOwner}}
-  <h2>Add a review:</h2>
+
+
+{{#if isNotCreator}}
+  <h2>Let us know what you think!</h2>
   <form action="/reviews/create/{{recipe._id}}" method="POST">
     <textarea name="comment" id="" cols="10" rows="5"></textarea>
     <button type="submit">Add</button>
   </form>
-{{/if}} --}}
+{{/if}}
