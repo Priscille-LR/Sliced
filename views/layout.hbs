@@ -11,13 +11,7 @@
   <body>
 
     {{!-- {{#if loggedInNavigation}} --}}
-      <nav>
-        <ul>
-          <li><a href="/recipes/list">View Recipess</a></li>
-          <li><a href="/recipes/create">Create a recipe</a></li>
-            </form>
-            </ul>
-            </nav>
+     
           {{!-- </li>
         </ul>
       </nav>
@@ -28,8 +22,58 @@
         </ul>
       </nav>
     {{/if}} --}}
+   <body>
+ <nav>
+        <ul>
+          <li id='to-left'>
+            <p><a href='/'> Healthylicious</a></p>
+          </li>
+          <form id='logout-form' action='/auth/logout' method='POST'>
+            <button>Logout</button>
+          </form>
+          <li class='to-right'>
+            <a href='/auth/profile'>Profile</a>
+          </li>
+          <li class='to-right'>
+            <a href='/auth/signup'>Signup</a>
+          </li>
+          <li class='to-right'>
+            <a href='/auth/login'>Login</a>
+          </li>
+          <li><a href="/recipes/list">View Recipess</a></li>
+          <li><a href="/recipes/create">Create a recipe</a></li>
+        </ul>
+    </nav>
+    {{!-- <nav>
+      {{#if username}}
+        <ul>
+          <li id='to-left'>
+            <p><a href='/'> Healthylicious</a></p>
+          </li>
+          <form id='logout-form' action='/auth/logout' method='POST'>
+            <button>Logout</button>
+          </form>
+          <li class='to-right'>
+            <a href='/auth/login'>Profile</a>
+          </li>
+        </ul>
+      {{else}}
+        <ul>
+          <li id='to-left'>
+            <p><a href='/'> Healthylicious</a></p>
+          </li>
+          <li class='to-right'>
+            <a href='/auth/signup'>Signup</a>
+          </li>
+          <li class='to-right'>
+            <a href='/auth/login'>Login</a>
+          </li>
+        </ul>
+      {{/if}}
+    </nav> --}}
+      {{{body}}}
 
-    {{{body}}}
+
 
     <script src="/js/script.js"></script>
   </body>
