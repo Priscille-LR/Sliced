@@ -6,7 +6,7 @@ const Recipe = require("../models/Recipe.model");
 const recipes = [
   {
     title: "Passion Fruit & Kombucha Spritz",
-    level: "Easy",
+    level: "easy",
     servings: 2,
     duration: 10,
     introduction:
@@ -30,11 +30,12 @@ const recipes = [
       "Add ice cubes and finish with equal parts of grapefruit juice and kombucha.",
       "Garnish as desired, and enjoy!",
     ],
+    creator: '63038910411a23ed007cd1ef'
   },
 
   {
     title: "Quick Pesto Couscous Salad",
-    level: "Easy",
+    level: "easy",
     servings: 3,
     duration: 10,
     introduction:
@@ -62,11 +63,12 @@ const recipes = [
       "Coming back to the large bowl with couscous, remove the plate and use a fork to “fluff” the couscous.",
       "Add the veggies, feta, herbs, lentils and pesto to the bowl with couscous. Mix and enjoy!",
     ],
+    creator: '63038910411a23ed007cd1ef'
   },
 
   {
     title: "Leek and Spinach Tofu Quiche",
-    level: "Medium",
+    level: "medium",
     servings: 4,
     duration: 67,
     introduction:
@@ -108,6 +110,7 @@ const recipes = [
       "Place the halved tomatoes on top, cut side up, and bake on the centre rack of the preheated oven for 35 - 40 minutes, or until the crust is slightly golden and the top is firm to the touch.",
       "Let the quiche cool off for at least 10 minutes before slicing. This time allows the quiche to firm up so it can be cut more cleanly. Enjoy!",
     ],
+    creator: '63038910411a23ed007cd1ef'
   },
 ];
 

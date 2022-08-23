@@ -2,10 +2,10 @@
   {{#each recipes}}
     <li>
       <h3> <a href="/recipes/{{this._id}}"> {{this.title}} </a></h3>
-      <p>- posted by {{this.creator.fullName}}</p>
+      <p>- posted by {{this.creator.username}}</p>
       <p>- description: {{this.introduction}}</p>
 
-      <img src="{{this.imageUrl}}" alt="" width="300" />
+      <img src="{{this.image}}" alt="" width="300" />
       {{#if this.isCreator}}
         <form action="/recipes/{{this._id}}/delete" method="POST">
           <button type="submit">Delete</button>

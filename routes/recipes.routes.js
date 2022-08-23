@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { isLoggedIn, isOwner } = require("../middleware/route-guard");
+const { isLoggedIn, isCreator } = require("../middleware/route-guard");
 
 const Recipe = require("../models/Recipe.model");
 
@@ -8,18 +8,18 @@ router.get("/list", (req, res) => {
   Recipe.find()
     .populate("creator")
     .then((recipes) => {
-      //const loggedInNavigation = req.session.hasOwnProperty("currentUser");
-      res.render("recipes/recipe-list", { recipes });
+      const loggedInNavigation = req.session.hasOwnProperty("currentUser");
+      res.render("recipes/recipe-list", { recipes, loggedInNavigation });
     })
     .catch((err) => console.error(err));
 });
 
-router.get("/create", (req, res) => {
-  //const loggedInNavigation = true;
-  res.render("recipes/add-recipe");
+router.get("/create",isLoggedIn, (req, res) => {
+  const loggedInNavigation = true;
+  res.render("recipes/add-recipe", {loggedInNavigation});
 });
 
-router.post("/create", (req, res) => {
+router.post("/create", isLoggedIn, (req, res) => {
   const {
     title,
     level,
@@ -28,11 +28,11 @@ router.post("/create", (req, res) => {
     duration,
     dishType,
     imageUrl,
-    ingrediants,
+    ingredients,
     instructions,
   } = req.body;
-  //const { _id } = req.session.currentUser;
-  //console.log("user id", _id);
+  const { _id } = req.session.currentUser;
+  console.log("user id", _id);
   Recipe.create({
     title,
     level,
@@ -41,9 +41,9 @@ router.post("/create", (req, res) => {
     duration,
     dishType,
     imageUrl,
-    ingrediants,
+    ingredients,
     instructions,
-    //creator: _id,
+    creator: _id,
   })
     .then((newRecipe) => {
       res.redirect("/recipes/list");
@@ -51,47 +51,44 @@ router.post("/create", (req, res) => {
     .catch((err) => console.error(err));
 });
 
+router.get("/:recipeId", (req, res) => {
+  const  _id = req.session?.currentUser?._id; // load property '_id' only if property 'currentUser' exists
+  const { recipeId } = req.params;
+  console.log(recipeId)
+  Recipe.findOne({ _id: recipeId })
+  .populate("creator")
+//.populate({
+//     path: "reviews",
+//     populate: {
+//       path: "user", // populate property 'user' within property 'reviews'
+//       model: "User",
+//     },
+//   })
+  .then((recipe) => {
+    console.log(recipe)
+  const loggedInNavigation = req.session.hasOwnProperty("currentUser"); 
+//   console.log(_id)
+//   console.log(recipe.creator)
+  const isNotCreator = _id !== recipe.creator._id.toString() && req.session.hasOwnProperty("currentUser");
+  res.render("recipes/recipe-details", {recipe, isNotCreator, loggedInNavigation})
+  })
+    .catch((err) => console.error(err));
+});
+
 // router.get("/:recipeId", (req, res) => {
-//   //const  _id = req.session?.currentUser?._id; // load property '_id' only if property 'currentUser' exists
 //   const { recipeId } = req.params;
-//   Recipe.findOne({ id: recipeId });
-//   //.populate("creator reviews") // populate property 'owner' and 'reviews'
-//   // .populate({
-//   //   path: "reviews",
-//   //   populate: {
-//   //     path: "user", // populate property 'user' within property 'reviews'
-//   //     model: "User",
-//   //   },
-//   // })
-//   //.then((recipe) => {
-//   //const loggedInNavigation = req.session.hasOwnProperty("currentUser"); // check if user is loggedIn by looking if this property exist on req.session
-//   //   const isNotCreator =
-//   //     _id !== recipe.creator._id.toString() &&
-//   //     req.session.hasOwnProperty("currentUser");
-//   res
-//     .render("recipes/recipe-details", {
-//       recipe,
-//       // isNotOwner,
-//       // loggedInNavigation,
-//       //});
-//     })
-//     .catch((err) => console.error(err));
+
+//   Recipe.findById(recipeId)
+//     .then((foundRecipes) => res.render("recipes/recipe-details", foundRecipes))
+//     .catch((error) => `Error while creating a new book: ${error}`);
 // });
 
-router.get("/:recipeId", (req, res) => {
-  const { recipeId } = req.params;
-
-  Recipe.findById(recipeId)
-    .then((foundRecipes) => res.render("recipes/recipe-details", foundRecipes))
-    .catch((error) => `Error while creating a new book: ${error}`);
+router.get("/edit/:recipeId", (req, res) => {
+  const loggedInNavigation = true;
+  res.render("recipes/edit-recipe", {loggedInNavigation});
 });
 
-router.get("/edit/:id", (req, res) => {
-  //const loggedInNavigation = true;
-  res.render("recipes/edit-recipe");
-});
-
-router.post("/edit/:id", isOwner, (req, res) => {
+router.post("/edit/:id", isCreator, (req, res) => {
   const { id } = req.params;
   const recipeUpdateInfo = req.body;
 
@@ -102,7 +99,7 @@ router.post("/edit/:id", isOwner, (req, res) => {
     .catch((err) => console.error(err));
 });
 
-router.post("/delete/:id", isOwner, (req, res) => {
+router.post("/delete/:id", isCreator, (req, res) => {
   const { id } = req.params;
   Recipe.findByIdAndDelete(id)
     .then(() => res.redirect("/recipes/list"))
