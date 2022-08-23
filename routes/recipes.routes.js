@@ -1,31 +1,111 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const { isLoggedIn, isOwner } = require("../middleware/route-guard");
 
-const { isLoggedIn, isOwner } = require('../middleware/route-guard');
+const Recipe = require("../models/Recipe.model");
 
-const Recipe = require('../models/Recipe.model');
-
-router.get('/edit/:id', (req, res) => {
-  //const loggedInNavigation = true;
-  res.render('recipes/edit-recipe');
+router.get("/list", (req, res) => {
+  Recipe.find()
+    .populate("creator")
+    .then((recipes) => {
+      //const loggedInNavigation = req.session.hasOwnProperty("currentUser");
+      res.render("recipes/recipe-list", { recipes });
+    })
+    .catch((err) => console.error(err));
 });
 
-router.post('/edit/:id', isOwner, (req, res) => {
+router.get("/create", (req, res) => {
+  //const loggedInNavigation = true;
+  res.render("recipes/add-recipe");
+});
+
+router.post("/create", (req, res) => {
+  const {
+    title,
+    level,
+    introduction,
+    servings,
+    duration,
+    dishType,
+    imageUrl,
+    ingrediants,
+    instructions,
+  } = req.body;
+  //const { _id } = req.session.currentUser;
+  //console.log("user id", _id);
+  Recipe.create({
+    title,
+    level,
+    introduction,
+    servings,
+    duration,
+    dishType,
+    imageUrl,
+    ingrediants,
+    instructions,
+    //creator: _id,
+  })
+    .then((newRecipe) => {
+      res.redirect("/recipes/list");
+    })
+    .catch((err) => console.error(err));
+});
+
+// router.get("/:recipeId", (req, res) => {
+//   //const  _id = req.session?.currentUser?._id; // load property '_id' only if property 'currentUser' exists
+//   const { recipeId } = req.params;
+//   Recipe.findOne({ id: recipeId });
+//   //.populate("creator reviews") // populate property 'owner' and 'reviews'
+//   // .populate({
+//   //   path: "reviews",
+//   //   populate: {
+//   //     path: "user", // populate property 'user' within property 'reviews'
+//   //     model: "User",
+//   //   },
+//   // })
+//   //.then((recipe) => {
+//   //const loggedInNavigation = req.session.hasOwnProperty("currentUser"); // check if user is loggedIn by looking if this property exist on req.session
+//   //   const isNotCreator =
+//   //     _id !== recipe.creator._id.toString() &&
+//   //     req.session.hasOwnProperty("currentUser");
+//   res
+//     .render("recipes/recipe-details", {
+//       recipe,
+//       // isNotOwner,
+//       // loggedInNavigation,
+//       //});
+//     })
+//     .catch((err) => console.error(err));
+// });
+
+router.get("/:recipeId", (req, res) => {
+  const { recipeId } = req.params;
+
+  Recipe.findById(recipeId)
+    .then((foundRecipes) => res.render("recipes/recipe-details", foundRecipes))
+    .catch((error) => `Error while creating a new book: ${error}`);
+});
+
+router.get("/edit/:id", (req, res) => {
+  //const loggedInNavigation = true;
+  res.render("recipes/edit-recipe");
+});
+
+router.post("/edit/:id", isOwner, (req, res) => {
   const { id } = req.params;
   const recipeUpdateInfo = req.body;
 
-    Recipe.findByIdAndUpdate(id, recipeUpdateInfo, { new: true })
-      .then(() => {
-        res.redirect('/recipes/list');
-      })
-      .catch((err) => console.error(err));
-  }
-);
+  Recipe.findByIdAndUpdate(id, recipeUpdateInfo, { new: true })
+    .then(() => {
+      res.redirect("/recipes/list");
+    })
+    .catch((err) => console.error(err));
+});
 
-router.post('/delete/:id', isOwner, (req, res) => {
+router.post("/delete/:id", isOwner, (req, res) => {
   const { id } = req.params;
   Recipe.findByIdAndDelete(id)
-    .then(() => res.redirect('/recipes/list'))
+    .then(() => res.redirect("/recipes/list"))
     .catch((err) => console.error(err));
 });
 

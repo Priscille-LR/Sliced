@@ -1,0 +1,43 @@
+<h1>Create a new recipe</h1>
+<form action="/recipes/create" method="POST">
+  <label for="">Title</label>
+  <input type="text" name="title" id="" />
+
+  <label for="level">Level</label>
+  <select name="level" id="level">
+    <option value="easy">Easy</option>
+    <option value="medium">Medium</option>
+    <option value="pro">Pro</option>
+  </select>
+
+  <label for="">Introduction</label>
+  <textarea name="introduction" id="" cols="30" rows="10"></textarea>
+
+  <label for="">Servings</label>
+  <input type="number" name="servings" id="" />
+
+  <label for="">Duration</label>
+  <input type="number" name="duration" id="" />
+
+  <label for="dishType">Dish type</label>
+  <select name="dishType" id="dishType">
+    <option value="breakfast">breakfast</option>
+    <option value="main_course">main course</option>
+    <option value="side">side</option>
+    <option value="snack">snack</option>
+    <option value="drink">drink</option>
+    <option value="dessert">dessert</option>
+    <option value="other">other</option>
+  </select>
+
+  <label for="">Image</label>
+  <input type="text" name="imageUrl" id="" />
+
+  <label for="">Ingrediants</label>
+  <textarea name="ingrediants" id="" cols="30" rows="10"></textarea>
+
+  <label for="">Instructions</label>
+  <textarea name="instructions" id="" cols="30" rows="10"></textarea>
+
+  <button type="submit">Create recipe</button>
+</form>

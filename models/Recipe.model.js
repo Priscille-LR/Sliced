@@ -6,7 +6,7 @@ const recipeSchema = new Schema(
     title: { type: String, required: true, uniqueItems: true },
     level: {
       type: String,
-      enum: ["Easy", "Medium", "Pro"],
+      enum: ["easy", "medium", "pro"],
     },
     servings: { type: Number, minimum: 1 },
     duration: { type: Number, minimum: 0 },
