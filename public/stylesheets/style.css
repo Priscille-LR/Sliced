@@ -34,7 +34,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--orange);
   padding: 0 2rem;
   background-color: white;
 }
@@ -43,6 +42,10 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 40%;
+}
+
+.logo img{
   width: 40%;
   /* background-color: var(--pale-blue); */
 }
@@ -131,8 +134,46 @@ form input {
   background-color: var(--turquoise);
 } */
 
-.recipes {
+.recipe-list {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipe-list h1 {
+  text-align: center;
+  font-size: 36px;
+  color: var(--turquoise);
+}
+
+.search-bar {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  /* text-align: center; */
+}
+
+.search-bar button {
+  background-color: var(--pale-blue);
+  padding: 0.5rem;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Butler', sans-serif;
+  font-size: 16px;
+}
+
+.recipe-list input {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  width: 50%;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.recipes {
+  display: flex;  
   justify-content: center;
   /* flex-wrap: wrap; */
   max-width: 1500px;

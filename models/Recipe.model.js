@@ -14,13 +14,13 @@ const recipeSchema = new Schema(
     dishType: {
       type: String,
       enum: [
-        "breakfast",
-        "main_course",
-        "side",
-        "snack",
-        "drink",
-        "dessert",
-        "other",
+        "Breakfast",
+        "Main Course",
+        "Side",
+        "Snack",
+        "Drink",
+        "Dessert",
+        "Other",
       ],
     },
     image: {
