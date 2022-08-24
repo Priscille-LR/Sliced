@@ -1,22 +1,32 @@
 <h1>Edit this recipe</h1>
-<form action='/recipes/edit/{{recipe._id}}/' method='post' id='edit-form'>
-  <label for='title'>Title</label>
-  <input type='text' name='title' id='title' value='{{recipe.title}}' />
+<form action="/recipes/edit/{{recipe._id}}/" method="post" id="edit-form">
+  <label for="title">Title</label>
+  <input type="text" name="title" id="title" value="{{recipe.title}}" />
 
-  <select name='level' id='level'>
+  <select name="level" id="level">
     <option value="">--</option>
-    <option value='easy'>Easy</option>
-    <option value='medium'>Medium</option>
-    <option value='pro'>Pro</option>
+    <option value="easy">Easy</option>
+    <option value="medium">Medium</option>
+    <option value="pro">Pro</option>
   </select>
 
-  <label for='servings'>Serves</label>
-  <input type='number' name='servings' id='servings' value='{{recipe.servings}}' />
+  <label for="servings">Serves</label>
+  <input
+    type="number"
+    name="servings"
+    id="servings"
+    value="{{recipe.servings}}"
+  />
 
-  <label for='duration'>Duration</label>
-  <input type='number' name='duration' id='duration' value='{{recipe.duration}}' />
+  <label for="duration">Duration</label>
+  <input
+    type="number"
+    name="duration"
+    id="duration"
+    value="{{recipe.duration}}"
+  />
 
-  <select name='dishType' id=''>
+  <select name="dishType" id="">
     <option value="">--</option>
     <option value='Breakfast'>Breakfast</option>
     <option value='Dessert'>Dessert</option>
@@ -27,20 +37,34 @@
     <option value='Other'>Other</option>
   </select>
 
-  <img src='{{recipe.image}}' alt='' width='200' />
-  <label for='image'>Upload new image</label>
-  <input type='text' name='image' id='image' value='{{recipe.image}}' />
+  <img src="{{recipe.image}}" alt="" width="200" />
+  <label for="image">Upload new image</label>
+  <input type="text" name="image" id="image" value="{{recipe.image}}" />
 
-  <label for='introduction'>Introduction</label>
-  <input type='text' name='introduction' id='introduction' value='{{recipe.introduction}}'/>
+  <label for="introduction">Introduction</label>
+  <input
+    type="text"
+    name="introduction"
+    id="introduction"
+    value="{{recipe.introduction}}"
+  />
 
-  <label for='ingredients'>Ingredients</label>
-  <textarea name='ingredients' id='ingredients' cols='30' rows='10'>{{recipe.ingredients}}</textarea>
+  <label for="ingredients">Ingredients</label>
+  <textarea
+    name="ingredients"
+    id="ingredients"
+    cols="30"
+    rows="10"
+  >{{recipe.ingredients}}</textarea>
 
-  <label for='instructions'>Instructions</label>
-  <textarea name='instructions' id='' cols='30' rows='10'>{{recipe.instructions}}</textarea>
-  
-  <button type='submit'>Save changes</button>
+  <label for="instructions">Instructions</label>
+  <textarea
+    name="instructions"
+    id=""
+    cols="30"
+    rows="10"
+  >{{recipe.instructions}}</textarea>
+
+  <button type="submit">Save changes</button>
 </form>
 <br />
-
