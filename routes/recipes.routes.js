@@ -5,13 +5,23 @@ const { isLoggedIn, isCreator } = require("../middleware/route-guard");
 const Recipe = require("../models/Recipe.model");
 
 router.get("/list", (req, res) => {
-  Recipe.find()
+  const {query} = req.query
+  if(query !== undefined && query !== ''){
+    Recipe.find({ingredients: {$regex : new RegExp(query.toLowerCase(), "i")}})//make query case insensitive
+    .then((recipes) => {
+      const loggedInNavigation = req.session.hasOwnProperty("currentUser");
+      res.render("recipes/recipe-list", { recipes, loggedInNavigation });
+    })
+    .catch((err) => console.error(err));
+  } else {
+    Recipe.find()
     .populate("creator")
     .then((recipes) => {
       const loggedInNavigation = req.session.hasOwnProperty("currentUser");
       res.render("recipes/recipe-list", { recipes, loggedInNavigation });
     })
     .catch((err) => console.error(err));
+  }
 });
 
 router.get("/create", isLoggedIn, (req, res) => {
@@ -32,7 +42,9 @@ router.post("/create", isLoggedIn, (req, res) => {
     instructions,
   } = req.body;
   const { _id } = req.session.currentUser;
-  console.log("user id", _id);
+  const ingredientsArr = ingredients.split('\n')
+  const instructionsArr = instructions.split('\n')
+  // console.log("user id", _id);
   Recipe.create({
     title,
     level,
@@ -41,11 +53,12 @@ router.post("/create", isLoggedIn, (req, res) => {
     duration,
     dishType,
     image,
-    ingredients,
-    instructions,
+    ingredients: ingredientsArr,
+    instructions: instructionsArr,
     creator: _id,
   })
     .then((newRecipe) => {
+      console.log(newRecipe)
       res.redirect("/recipes/list");
     })
     .catch((err) => console.error(err));
