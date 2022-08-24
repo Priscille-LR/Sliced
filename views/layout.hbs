@@ -5,6 +5,9 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <meta http-equiv='X-UA-Compatible' content='ie=edge' />
     <title>{{appTitle}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
 
@@ -33,13 +36,13 @@
 
     {{#if loggedInNavigation}}
       {{!-- {{#if username}} --}}
-      <nav>
+      <header>
+          
+            <a href='/' class='logo'><img src="/images/sliced-logo.png" alt="go to homepage" ></a>
+        <nav>
         <ul>
-          <li id='to-left'>
-            <p><a href='/'>Sliced</a></p>
-          </li>
-          <li><a href='/recipes/list'>View Recipes</a></li>
-          <li><a href='/recipes/create'>Create a recipe</a></li>
+          <li class='to-right'><a href='/recipes/list'>View Recipes</a></li>
+          <li class='to-right'><a href='/recipes/create'>Create a recipe</a></li>
           <li class='to-right'><a href='/auth/login'>Profile</a></li>
           <li>
             <form id='logout-form' action='/auth/logout' method='POST'>
@@ -47,27 +50,33 @@
             </form>
           </li>
         </ul>
-      </nav>
+        </nav>
+      </header>
     {{else}}
-      <nav>
+      <header>
+          
+           <a href='/' class='logo'><img src="/images/logo-dark.png" alt="go to homepage" class='logo'></a>
+         <nav>
         <ul>
-          <li id='to-left'>
-            <p><a href='/'>Sliced</a></p>
-          </li>
           <li class='to-right'>
             <a href='/auth/signup'>Signup</a>
           </li>
           <li class='to-right'>
             <a href='/auth/login'>Login</a>
-          </li>
+          </li class='to-right'>
           <li><a href='/recipes/list'>View Recipes</a></li>
-
         </ul>
-      </nav>
+        </nav>
+      </header>
     {{/if}}
 
     {{{body}}}
 
+    <footer>
+      <p>Clean recipes to nourish the mind and the body 
+        <span role='image' aria-label='hamburger'>🥭🍓🍌🥝🍍🍑</span></p>
+      <p>Ironhack Web Dev July 2022</p>
+    </footer>
     <script src='/js/script.js'></script>
   </body>
 

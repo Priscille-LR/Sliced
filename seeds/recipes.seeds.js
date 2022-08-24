@@ -73,7 +73,7 @@ const recipes = [
     duration: 67,
     introduction:
       "When blended, the tofu creates the perfect consistency for this quiche and the turmeric creates a beautiful golden colour. This tofu quiche is hearty, filling and can be enjoyed hot or cold!",
-    dishType: "main_course",
+    dishType: "main course",
     image:
       "https://cdn.pickuplimes.com/cache/b1/eb/b1eb64b303c5b8905a083e4db3f04006.jpg",
     ingredients: [
