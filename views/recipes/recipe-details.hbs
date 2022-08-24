@@ -6,13 +6,13 @@
 <span>{{recipe.dishType}}</span>
 <p> {{recipe.introduction}}</p>
 
-<img src="{{recipe.image}}" alt=""/>
+<img src="{{recipe.image}}" alt="" />
 
 <article>
   <h2>Ingredients</h2>
   <ul>
     {{#each recipe.ingredients}}
-    <li>{{this}}</li>
+      <li>{{this}}</li>
     {{/each}}
   </ul>
 </article>
@@ -21,24 +21,24 @@
   <h2>Directions</h2>
   <ol>
     {{#each recipe.instructions}}
-    <li>{{this}}</li>
+      <li>{{this}}</li>
     {{/each}}
   </ol>
 </article>
 
-{{!-- only shows if you're the creator  --}}
-{{#unless isNotCreator}} 
-<a href="/recipes/edit/{{recipe._id}}">Update recipe details</a>
-<form action='/recipes/delete/{{recipe._id}}' method='post'>
-  <button type='submit'>Delete this recipe</button>
-</form>
+{{! only shows if you're the creator  }}
+{{#unless isNotCreator}}
+  <a href="/recipes/edit/{{recipe._id}}">Update recipe details</a>
+  <form action="/recipes/delete/{{recipe._id}}" method="post">
+    <button type="submit">Delete this recipe</button>
+  </form>
 {{/unless}}
 
 {{! if there are reviews, show them, if not, forget about it 🙃 }}
-{{!-- {{#if recipe.reviews}}
+{{#if recipe.reviews}}
   <h3>Reviews:</h3>
   {{#each recipe.reviews}}
-    <p> <b>{{this.user.fullName}} said: </b> {{this.comment}} </p>
+    <p> <b>{{this.user.username}} said: </b> {{this.comment}} </p>
     {{#if this.canBeChanged}}
       <a href="/reviews/{{this._id}}">Edit</a>
       <form action="/reviews/{{this._id}}" method="POST">
@@ -46,10 +46,9 @@
       </form>
     {{/if}}
   {{/each}}
-{{/if}} --}}
+{{/if}}
 
 <hr />
-
 
 {{#if isNotCreator}}
   <h2>Let us know what you think!</h2>
