@@ -1,59 +1,75 @@
-<h1>{{recipe.title}}</h1>
-<p>Posted by: {{recipe.creator.username}}</p>
+<div class="detail-page">
 
-<span>🕒 {{recipe.duration}} mins</span>
-<span>Serves: {{recipe.servings}}</span>
-<span>{{recipe.dishType}}</span>
-<p> {{recipe.introduction}}</p>
+  <h1>{{recipe.title}}</h1>
+  <p>Creator: {{recipe.creator.username}}</p>
 
-<img src="{{recipe.image}}" alt="" />
+  <div class="minor">
+    <span class="duration">🕒 {{recipe.duration}} mins</span>
+    <span class="servings">Serves: {{recipe.servings}}</span>
+    <span class="dish-type">{{recipe.dishType}}</span>
+  </div>
+  <p class="descrip"> {{recipe.introduction}}</p>
+  <img src="{{recipe.image}}" alt="" />
 
-<article>
-  <h2>Ingredients</h2>
-  <ul>
-    {{#each recipe.ingredients}}
-      <li>{{this}}</li>
+  <div class="column">
+    <article class="ingredients">
+      <h2>Ingredients</h2>
+      <ul>
+        {{#each recipe.ingredients}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </article>
+
+    <article class="directions">
+      <h2>Directions</h2>
+      <ol>
+        {{#each recipe.instructions}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ol>
+    </article>
+  </div>
+
+  {{! only shows if you're the creator  }}
+  {{#unless isNotCreator}}
+    <div class="column">
+      <div class="update-recipe">
+        <a href="/recipes/edit/{{recipe._id}}"><button class="small-btn">
+            Update recipe</button></a>
+
+      </div>
+      <div class="delete-recipe">
+        <form action="/recipes/delete/{{recipe._id}}" method="post">
+          <button class="small-btn" type="submit">Delete recipe</button>
+        </form>
+      </div>
+    </div>
+  {{/unless}}
+
+  {{! if there are reviews, show them, if not, forget about it 🙃 }}
+
+  {{#if recipe.reviews}}
+    <h3>Reviews:</h3>
+    {{#each recipe.reviews}}
+      <p> <b>{{this.user.username}} said: </b> {{this.comment}} </p>
+      {{#if this.canBeChanged}}
+        <a href="/reviews/{{this._id}}">Edit</a>
+        <form action="/reviews/{{this._id}}" method="POST">
+          <button type="submit"> Delete </button>
+        </form>
+      {{/if}}
     {{/each}}
-  </ul>
-</article>
+  {{/if}}
 
-<article>
-  <h2>Directions</h2>
-  <ol>
-    {{#each recipe.instructions}}
-      <li>{{this}}</li>
-    {{/each}}
-  </ol>
-</article>
+  <hr />
 
-{{! only shows if you're the creator  }}
-{{#unless isNotCreator}}
-  <a href="/recipes/edit/{{recipe._id}}">Update recipe details</a>
-  <form action="/recipes/delete/{{recipe._id}}" method="post">
-    <button type="submit">Delete this recipe</button>
-  </form>
-{{/unless}}
+  {{#if isNotCreator}}
+    <h2>Let us know what you think!</h2>
+    <form action="/reviews/create/{{recipe._id}}" method="POST">
+      <textarea name="comment" id="" cols="10" rows="5"></textarea>
+      <button type="submit">Add</button>
+    </form>
+  {{/if}}
 
-{{! if there are reviews, show them, if not, forget about it 🙃 }}
-{{#if recipe.reviews}}
-  <h3>Reviews:</h3>
-  {{#each recipe.reviews}}
-    <p> <b>{{this.user.username}} said: </b> {{this.comment}} </p>
-    {{#if this.canBeChanged}}
-      <a href="/reviews/{{this._id}}">Edit</a>
-      <form action="/reviews/{{this._id}}" method="POST">
-        <button type="submit"> Delete </button>
-      </form>
-    {{/if}}
-  {{/each}}
-{{/if}}
-
-<hr />
-
-{{#if isNotCreator}}
-  <h2>Let us know what you think!</h2>
-  <form action="/reviews/create/{{recipe._id}}" method="POST">
-    <textarea name="comment" id="" cols="10" rows="5"></textarea>
-    <button type="submit">Add</button>
-  </form>
-{{/if}}
+</div>
