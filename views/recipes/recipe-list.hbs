@@ -1,16 +1,19 @@
-<ul>
+<div class='recipes'>
   {{#each recipes}}
-    <li>
-      <h3> <a href="/recipes/{{this._id}}"> {{this.title}} </a></h3>
-      <p>- posted by {{this.creator.username}}</p>
-      <p>- description: {{this.introduction}}</p>
-
+    <div class='recipe-card'>
       <img src="{{this.image}}" alt="" width="300" />
+      <div class="card-content">
+      <h3> <a href="/recipes/{{this._id}}"> {{this.title}} </a></h3>
+      <span class='duration'>🕒 {{this.duration}} mins</span>
+      <span class='servings'>Serves {{this.servings}}</span>
+      <span class='dish-type'>{{this.dishType}}</span>
+      {{!-- <p>{{this.introduction}}</p> --}}
+      </div>
       {{#if this.isCreator}}
         <form action="/recipes/{{this._id}}/delete" method="POST">
           <button type="submit">Delete</button>
         </form>
       {{/if}}
-    </li>
+    </div>
   {{/each}}
-</ul>
+</div>

@@ -12,7 +12,7 @@ const express = require("express");
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
-
+const path = require('path');
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
@@ -34,6 +34,8 @@ app.use("/recipes", recipesRouter);
 
 const authRouter = require('./routes/auth.routes')
 app.use('/auth', authRouter)
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
