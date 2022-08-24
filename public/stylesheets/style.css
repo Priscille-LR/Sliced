@@ -15,15 +15,16 @@ body {
 }
 
 body {
-  font: 14px 'Poppins', Arial, Helvetica, sans-serif;
+  font: 14px "Poppins", Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-
 }
 
-h1, h2, h3 {
-  font-family: 'Butler', sans-serif;
+h1,
+h2,
+h3 {
+  font-family: "Butler", sans-serif;
 }
 
 a {
@@ -44,13 +45,17 @@ header {
   flex-direction: row;
   align-items: center;
   width: 40%;
+}
+
+.logo img {
+  width: 40%;
   /* background-color: var(--pale-blue); */
 }
 
 nav {
   display: flex;
   list-style: none;
-  font-family: 'Butler', sans-serif;
+  font-family: "Butler", sans-serif;
   font-size: large;
   /* width: 70%; */
 }
@@ -81,8 +86,8 @@ nav li a {
   right: 0;
   z-index: -1;
   display: block;
-  background-image: url('../images/bg-form-img.jpg');
-  background-size:cover;
+  background-image: url("../images/bg-form-img.jpg");
+  background-size: cover;
   width: 100%;
   height: 100%;
   filter: brightness(50%);
@@ -100,7 +105,6 @@ nav li a {
   padding: 1rem 2rem;
   background-color: var(--bg-pale);
   border-radius: 7px;
-
 }
 
 form label {
@@ -123,13 +127,51 @@ form input {
   border-radius: 3px;
   align-self: center;
   width: 50%;
-  font-family: 'Butler', sans-serif;
+  font-family: "Butler", sans-serif;
   font-size: 20px;
 }
 
 /* .form-page button:hover{
   background-color: var(--turquoise);
 } */
+
+.recipe-list {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipe-list h1 {
+  text-align: center;
+  font-size: 36px;
+  color: var(--turquoise);
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  /* text-align: center; */
+}
+
+.search-bar button {
+  background-color: var(--pale-blue);
+  padding: 0.5rem;
+  border: none;
+  border-radius: 3px;
+  font-family: "Butler", sans-serif;
+  font-size: 16px;
+}
+
+.recipe-list input {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  width: 50%;
+  padding: 0.5rem;
+  margin: 0;
+}
 
 .recipes {
   display: flex;
@@ -173,7 +215,7 @@ form input {
 
 .card-content a {
   color: var(--turquoise);
-  font-family: 'Butler', sans-serif;
+  font-family: "Butler", sans-serif;
   font-size: 20px;
 }
 
