@@ -14,7 +14,7 @@ router.post("/create/:recipeId", async (req, res) => {
       await recipe.reviews.push(newReview._id); // add review id to recipe 'reviews' property
       await recipe.save(); // save recipe with new review id to the DB
     })
-    .then(() => res.redirect(`/recipes/${recipeId}`))
+    .then(() => res.redirect(`/recipes/id/${recipeId}`))
     .catch((err) => console.error(err));
 });
 

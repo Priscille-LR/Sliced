@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const Recipe = require('../models/Recipe.model');
 const User = require('../models/User.model');
 
+
 router.get('/list', (req, res) => {
   const { query, dishType } = req.query;
 
@@ -22,15 +23,24 @@ router.get('/list', (req, res) => {
       })
       .catch((err) => console.error(err));
   } else if (dishType !== undefined){
-    Recipe.find({
-      dishType: { $regex: new RegExp(dishType) },
-    })
-    .then((recipes) => {
-      const loggedInNavigation = req.session.hasOwnProperty('currentUser');
-      res.render('recipes/recipe-list', { recipes, loggedInNavigation });
-    })
-    .catch((err) => console.error(err));
-
+    if(dishType === '--'){
+      Recipe.find()
+      .populate('creator')
+      .then((recipes) => {
+        const loggedInNavigation = req.session.hasOwnProperty('currentUser');
+        res.render('recipes/recipe-list', { recipes, loggedInNavigation });
+      })
+      .catch((err) => console.error(err));
+    } else {
+      Recipe.find({
+        dishType: { $regex: new RegExp(dishType) },
+      })
+      .then((recipes) => {
+        const loggedInNavigation = req.session.hasOwnProperty('currentUser');
+        res.render('recipes/recipe-list', { recipes, loggedInNavigation });
+      })
+      .catch((err) => console.error(err));
+    }
   } else {
     Recipe.find()
       .populate('creator')
@@ -41,6 +51,7 @@ router.get('/list', (req, res) => {
       .catch((err) => console.error(err));
   }
 });
+
 
 router.get('/create', isLoggedIn, (req, res) => {
   const loggedInNavigation = true;
@@ -82,7 +93,8 @@ router.post('/create', isLoggedIn, (req, res) => {
     .catch((err) => console.error(err));
 });
 
-router.get('/:recipeId', (req, res) => {
+router.get('/id/:recipeId', (req, res) => {
+  console.log('totot')
   const _id = req.session?.currentUser?._id; // load property '_id' only if property 'currentUser' exists
   const { recipeId } = req.params;
   const favourites = req.session?.currentUser?.favouritesRecipes;
@@ -102,7 +114,7 @@ router.get('/:recipeId', (req, res) => {
       const isNotCreator =
         _id !== recipe.creator._id.toString() &&
         req.session.hasOwnProperty('currentUser');
-
+   
       const isFavourite = favourites !== undefined ? favourites.includes(recipeId) : false;
       //console.log(isFavourite);
       res.render('recipes/recipe-details', {
@@ -144,6 +156,19 @@ router.post('/delete/:recipeId', isCreator, (req, res) => {
     .catch((err) => console.error(err));
 });
 
+router.get('/favourites', (req, res) => {
+  const favourites = req.session?.currentUser?.favouritesRecipes;
+
+  Recipe.find({ _id : { $in : favourites } })
+      .populate('creator')
+      .then((recipes) => {
+        const loggedInNavigation = req.session.hasOwnProperty('currentUser');
+        res.render('recipes/recipe-list', { recipes, loggedInNavigation });
+      })
+      .catch((err) => console.error(err));
+  }
+)
+
 router.post('/favourites/:recipeId', isLoggedIn, (req, res) => {
   const { recipeId } = req.params;
   const _id = req.session?.currentUser?._id;
@@ -160,7 +185,7 @@ router.post('/favourites/:recipeId', isLoggedIn, (req, res) => {
       { new: true }
     )
       .then(() => {
-        res.redirect('/recipes/' + recipeId);
+        res.redirect('/recipes/id/' + recipeId);
       })
       .catch((err) => console.error(err));
   } else {
@@ -171,10 +196,12 @@ router.post('/favourites/:recipeId', isLoggedIn, (req, res) => {
     )
       .then(() => {
         favourites.push(recipeId);
-        res.redirect('/recipes/' + recipeId);
+        res.redirect('/recipes/id/' + recipeId);
       })
       .catch((err) => console.error(err));
   }
 });
+
+
 
 module.exports = router;
