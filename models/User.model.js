@@ -18,6 +18,9 @@ const userSchema = new Schema(
       required: [true, 'Full Name is required.'],
       trim: true,
     },
+    favouritesRecipes: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Recipe" }]
+    }
   },
   {
     timestamps: true,

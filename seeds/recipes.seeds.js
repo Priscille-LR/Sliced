@@ -11,7 +11,7 @@ const recipes = [
     duration: 10,
     introduction:
       "This drink is bursting with flavour. Passion fruit gives it a sweet taste and the seeds add a nice crunch. Kombucha is full of probiotics and adds a bit of a fizzy tingle. This refreshing drink is a little bit tart because of the grapefruit, but the combination with the herbs makes it a juicy, thirst-quenching drink.",
-    dishType: "drink",
+    dishType: "Drink",
     image:
       "https://cdn.pickuplimes.com/cache/b1/73/b173fdb8c36f145e80dd47f3783c1c60.jpg",
     ingredients: [
@@ -40,7 +40,7 @@ const recipes = [
     duration: 10,
     introduction:
       "Easy, quick, and delicious: words that perfectly describe this couscous salad! It's also an incredibly versatile recipe, so adjust to your own taste by using red pesto, or bell pepper instead of cucumber, different herbs, or add some lemon juice. Anything goes!",
-    dishType: "side",
+    dishType: "Side",
     image:
       "https://cdn.pickuplimes.com/cache/cd/20/cd20bf264ba3e2911d6b76db11754b30.jpg",
     ingredients: [
@@ -73,7 +73,7 @@ const recipes = [
     duration: 67,
     introduction:
       "When blended, the tofu creates the perfect consistency for this quiche and the turmeric creates a beautiful golden colour. This tofu quiche is hearty, filling and can be enjoyed hot or cold!",
-    dishType: "main course",
+    dishType: "Main Course",
     image:
       "https://cdn.pickuplimes.com/cache/b1/eb/b1eb64b303c5b8905a083e4db3f04006.jpg",
     ingredients: [
