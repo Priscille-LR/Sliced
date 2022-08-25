@@ -1,70 +1,90 @@
-<h1>Edit this recipe</h1>
-<form action="/recipes/edit/{{recipe._id}}/" method="post" id="edit-form">
-  <label for="title">Title</label>
-  <input type="text" name="title" id="title" value="{{recipe.title}}" />
+<div class="edit-page">
+  <h1>Edit this recipe</h1>
+  <form action="/recipes/edit/{{recipe._id}}/" method="post" id="edit-form">
+    <section>
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" value="{{recipe.title}}" />
+    </section>
 
-  <select name="level" id="level">
-    <option value="">--</option>
-    <option value="easy">Easy</option>
-    <option value="medium">Medium</option>
-    <option value="pro">Pro</option>
-  </select>
+    <section>
+      <label for="level">Level</label>
+      <select name="level" id="level">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="pro">Pro</option>
+      </select>
+    </section>
 
-  <label for="servings">Serves</label>
-  <input
-    type="number"
-    name="servings"
-    id="servings"
-    value="{{recipe.servings}}"
-  />
+    <section>
+      <label for="servings">Serves</label>
+      <input
+        type="number"
+        name="servings"
+        id="servings"
+        value="{{recipe.servings}}"
+      />
+    </section>
 
-  <label for="duration">Duration</label>
-  <input
-    type="number"
-    name="duration"
-    id="duration"
-    value="{{recipe.duration}}"
-  />
+    <section>
+      <label for="duration">Duration</label>
+      <input
+        type="number"
+        name="duration"
+        id="duration"
+        value="{{recipe.duration}}"
+      />
+    </section>
 
-  <select name="dishType" id="">
-    <option value="">--</option>
-    <option value="Breakfast">Breakfast</option>
-    <option value="Dessert">Dessert</option>
-    <option value="Drink">Drink</option>
-    <option value="Main Course">Main course</option>
-    <option value="Side">Side</option>
-    <option value="Snack">Snack</option>
-    <option value="Other">Other</option>
-  </select>
+    <section>
+      <label for="dishType">Dish type</label>
+      <select name="dishType" id="">
+        <option value="Breakfast">Breakfast</option>
+        <option value="Dessert">Dessert</option>
+        <option value="Drink">Drink</option>
+        <option value="Main Course">Main course</option>
+        <option value="Side">Side</option>
+        <option value="Snack">Snack</option>
+        <option value="Other">Other</option>
+      </select>
+    </section>
 
-  <img src="{{recipe.image}}" alt="" width="200" />
-  <label for="image">Upload new image</label>
-  <input type="text" name="image" id="image" value="{{recipe.image}}" />
+    <section>
+      <label for="image">Upload new image</label>
+      <input type="text" name="image" id="image" value="{{recipe.image}}" />
+      <img src="{{recipe.image}}" alt="" width="200" />
+    </section>
 
-  <label for="introduction">Introduction</label>
-  <input
-    type="text"
-    name="introduction"
-    id="introduction"
-    value="{{recipe.introduction}}"
-  />
+    <section>
+      <label for="introduction">Introduction</label>
+      <input
+        type="text"
+        name="introduction"
+        id="introduction"
+        value="{{recipe.introduction}}"
+      />
+    </section>
 
-  <label for="ingredients">Ingredients</label>
-  <textarea
-    name="ingredients"
-    id="ingredients"
-    cols="30"
-    rows="10"
-  >{{recipe.ingredients}}</textarea>
+    <section>
+      <label for="ingredients">Ingredients</label>
+      <textarea
+        name="ingredients"
+        id="ingredients"
+        cols="30"
+        rows="10"
+      >{{recipe.ingredients}}</textarea>
+    </section>
 
-  <label for="instructions">Instructions</label>
-  <textarea
-    name="instructions"
-    id=""
-    cols="30"
-    rows="10"
-  >{{recipe.instructions}}</textarea>
+    <section>
+      <label for="instructions">Instructions</label>
+      <textarea
+        name="instructions"
+        id=""
+        cols="30"
+        rows="10"
+      >{{recipe.instructions}}</textarea>
+    </section>
 
-  <button type="submit">Save changes</button>
-</form>
-<br />
+    <button type="submit">Save changes</button>
+  </form>
+  <br />
+</div>
