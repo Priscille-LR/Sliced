@@ -69,11 +69,14 @@ nav li a,
 .logout {
   font-size: 20px;
   color: var(--turquoise);
+  font-family: 'Butler', sans-serif;
+
 }
 
 .logout {
-  background-color: transparent;
   border: none;
+  font-size: large;
+  background-color: white;
 }
 
 .form-page,
@@ -149,7 +152,7 @@ form input {
 
 .recipe-list h1 {
   text-align: center;
-  font-size: 36px;
+  font-size: 48px;
   color: var(--turquoise);
 }
 
@@ -158,12 +161,12 @@ form input {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  /* text-align: center; */
+  margin: 5rem 0;
 }
 
 .search-bar button {
   background-color: var(--pale-blue);
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 3px;
   font-family: 'Butler', sans-serif;
@@ -179,15 +182,29 @@ form input {
   margin: 0;
 }
 
+.dishType-select {
+  margin: 4rem 11rem;
+}
+git 
+.dishType-select label {
+  font-family: 'Butler', sans-serif;
+  font-size: 18px;
+  color: var(--turquoise);
+  margin-right: 1rem;
+}
+
+.dishType-select select {
+  padding: 0.5rem;
+}
+
 .recipes {
   display: flex;
   justify-content: center;
-  /* flex-wrap: wrap; */
   max-width: 1500px;
-  height: 95vh;
   flex-wrap: wrap;
   max-width: 90%;
-  margin-left: 4.5rem;
+
+  margin: 5rem 0 5rem 4.5rem;
 }
 
 .recipe-card {
@@ -348,6 +365,68 @@ form input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.heart-button-wrapper {
+  border: none;
+  background-color: white;
+}
+
+.heart-button {
+  position: relative;
+  width: 60px;
+  height: 30px;
+ 
+}
+
+.heart-button:before {
+  position: absolute;
+  top: 0;
+  left: 80px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  width: 80px;
+  height: 125px;
+  border-radius: 40px 40px 0 0;
+  background-color: var(--bg-darker);
+  content: "";
+  cursor: pointer;
+  transition: background .4s;
+}
+
+.heart-button:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin :100% 100%;
+  width: 80px;
+  height: 125px;
+  border-radius: 40px 40px 0 0;
+  background-color: var(--bg-darker);
+  content: "";
+  cursor: pointer;
+  transition: background .4s;
+}
+
+.heart-button.liked::before,
+.heart-button.liked::after {
+  background-color: #d65076;
+}
+.heart-button.liked {
+  animation: liked .4s ease;
+}
+
+@keyframes liked {
+  0% {
+    transform: scale(.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 footer {
