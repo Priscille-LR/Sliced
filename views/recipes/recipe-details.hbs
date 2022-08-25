@@ -5,7 +5,7 @@
     <div class='heading'>
         <h1>{{recipe.title}}</h1>
         <form action='/recipes/favourites/{{recipe._id}}' method='POST'>
-          {{#if isFavorite}}
+          {{#if isFavourite}}
             <button class='heart-button-wrapper'>
               <div class='heart-button liked'></div>
             </button>
@@ -51,7 +51,7 @@
   </div>
 
   {{! only shows if you're the creator  }}
-  {{#unless isNotCreator}}
+  {{#if isCreator}}
     <div class='edit-buttons'>
       <div class='update-recipe'>
         <a href='/recipes/edit/{{recipe._id}}'><button class='small-btn'>
@@ -63,10 +63,10 @@
         </form>
       </div>
     </div>
-  {{/unless}}
+  {{/if}}
 
   <div class='comment'>
-    {{#if isNotCreator}}
+    {{#if isAllowedToComment}}
       <h2>Let us know what you think!</h2>
       <form
         class="insert-box"

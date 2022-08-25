@@ -97,16 +97,15 @@ router.get('/id/:recipeId', (req, res) => {
     })
     .then((recipe) => {
       const loggedInNavigation = req.session.hasOwnProperty("currentUser");
-      const isNotCreator =
-        _id !== recipe.creator._id.toString() &&
-        req.session.hasOwnProperty('currentUser')
-      
+      const isCreator = _id === recipe.creator._id.toString()
       const isFavourite = favourites !== undefined ? favourites.includes(recipeId) : false;
+      const isAllowedToComment = !isCreator && req.session.hasOwnProperty('currentUser');
       res.render("recipes/recipe-details", {
         recipe,
-        isFavorite: isFavourite,
-        isNotCreator,
+        isFavourite,
+        isCreator,
         loggedInNavigation,
+        isAllowedToComment
       });
     })
     .catch((err) => console.error(err));
