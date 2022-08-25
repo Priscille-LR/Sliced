@@ -68,13 +68,16 @@
   <div class='comment'>
     {{#if isNotCreator}}
       <h2>Let us know what you think!</h2>
-      <form class='insert-box' action='/reviews/create/{{recipe._id}}' method='POST'>
-        <textarea name='comment' id='' cols='10' rows='5'></textarea>
-        <button class='small-btn' type='submit'>Add</button>
+      <form
+        class="insert-box"
+        action="/reviews/create/{{recipe._id}}"
+        method="POST"
+      >
+        <textarea name="comment" id="" cols="10" rows="5"></textarea>
+        <button class="small-btn" type="submit">Add</button>
       </form>
     {{/if}}
   </div>
-  <hr />
   
   {{! if there are reviews, show them, if not, forget about it 🙃 }}
   <div class='review'>
