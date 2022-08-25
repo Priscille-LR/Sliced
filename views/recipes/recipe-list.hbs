@@ -1,25 +1,31 @@
 <div class="recipe-list">
   <h1>Recipes</h1>
-  <form action='/recipes/list' method='GET' class='search-bar'>
-    <input type='text' name='query' placeholder='search for ingredients' />
-    <button type='submit'>search</button>
+  <form action="/recipes/list" method="GET" class="search-bar">
+    <input type="text" name="query" placeholder="search for ingredients" />
+    <button type="submit">search</button>
   </form>
 
-  <form action='/recipes/list' method='GET' class='dishType-select'>
-    <label for='dishType'>Dish type</label>
-    <select name='dishType' id='dishType' onchange='this.form.submit();'>
-      <option value=''>--</option>
-      <option value='Breakfast'>Breakfast</option>
-      <option value='Dessert'>Dessert</option>
-      <option value='Drink'>Drink</option>
-      <option value='Main Course'>Main course</option>
-      <option value='Side'>Side</option>
-      <option value='Snack'>Snack</option>
-      <option value='Other'>Other</option>
+
+  <form action="/recipes/list" method="GET" class="dishType-select">
+    <label for="dishType">Dish type</label>
+    <select
+      name="dishType"
+      id="dishType"
+      onchange="if(this.value != 0) { this.form.submit(); }"
+    >
+      <option value="">--</option>
+      <option value="Breakfast">Breakfast</option>
+      <option value="Dessert">Dessert</option>
+      <option value="Drink">Drink</option>
+      <option value="Main Course">Main course</option>
+      <option value="Side">Side</option>
+      <option value="Snack">Snack</option>
+      <option value="Other">Other</option>
+
     </select>
   </form>
 
-  <div class='recipes'>
+  <div class="recipes">
 
     {{#each recipes}}
       <div class="recipe-card">

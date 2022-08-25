@@ -50,9 +50,11 @@
 
   {{! only shows if you're the creator  }}
   {{#unless isNotCreator}}
-    <div class='column'>
-      <div class='update-recipe'>
-        <a href='/recipes/edit/{{recipe._id}}'><button class='small-btn'>
+
+
+    <div class="column">
+      <div class="update-recipe">
+        <a href="/recipes/edit/{{recipe._id}}"><button class="small-btn">
             Update recipe</button></a>
       </div>
       <div class='delete-recipe'>
@@ -65,12 +67,18 @@
 
   <div class="comment">
     {{#if isNotCreator}}
-    <h2>Let us know what you think!</h2>
-    <form action='/reviews/create/{{recipe._id}}' method='POST'>
-      <textarea name='comment' id='' cols='10' rows='5'></textarea>
-      <button type='submit'>Add</button>
-    </form>
-  {{/if}}
+      <h2>Let us know what you think!</h2>
+      <form
+        class="insert-box"
+        action="/reviews/create/{{recipe._id}}"
+        method="POST"
+      >
+        <textarea name="comment" id="" cols="10" rows="5"></textarea>
+        <button class="small-btn" type="submit">Add</button>
+      </form>
+
+    {{/if}}
+
   </div>
   <hr />
   {{! if there are reviews, show them, if not, forget about it 🙃 }}
