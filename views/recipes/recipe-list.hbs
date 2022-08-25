@@ -5,6 +5,7 @@
     <button type="submit">search</button>
   </form>
 
+
   <form action="/recipes/list" method="GET" class="dishType-select">
     <label for="dishType">Dish type</label>
     <select
@@ -20,6 +21,7 @@
       <option value="Side">Side</option>
       <option value="Snack">Snack</option>
       <option value="Other">Other</option>
+
     </select>
   </form>
 
@@ -29,7 +31,7 @@
       <div class="recipe-card">
         <img src="{{this.image}}" alt="" width="300" />
         <div class="card-content">
-          <h3> <a href="/recipes/{{this._id}}"> {{this.title}} </a></h3>
+          <h3> <a href="/recipes/id/{{this._id}}"> {{this.title}} </a></h3>
           <span class="duration">🕒 {{this.duration}} mins</span>
           <span class="servings">Serves {{this.servings}}</span>
           <span class="dish-type">{{this.dishType}}</span>

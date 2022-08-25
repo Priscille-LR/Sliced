@@ -299,7 +299,7 @@ form input {
   font-size: 1.2rem;
 }
 
-.detail-page {
+.details-page {
   margin: 5rem 10rem;
 
   width: 80vw;
@@ -309,16 +309,16 @@ form input {
   justify-content: center;
 }
 
-.detail-page img {
+.details-page img {
   width: 50%;
   margin-top: 3rem;
 }
 
-.detail-page h1 {
+.details-page h1 {
   font-size: 3rem;
 }
 
-.detail-page .minor {
+.details-page .minor {
   width: 30rem;
   display: flex;
   flex-direction: row;
@@ -326,7 +326,7 @@ form input {
   align-items: center;
 }
 
-.detail-page .descrip {
+.details-page .description {
   font-size: 1.2rem;
   margin-top: 2rem;
   font-style: italic;
@@ -525,4 +525,20 @@ footer p {
 
 .fa-github {
   background: white;
+}
+
+.networks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+/* .networks span {
+  margin-right: 1rem;
+} */
+
+.networks-hinju span {
+  margin-right: 0.5rem;
 }

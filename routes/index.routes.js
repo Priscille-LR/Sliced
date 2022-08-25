@@ -2,7 +2,8 @@ const router = require("express").Router();
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  const loggedInNavigation = req.session.hasOwnProperty('currentUser');
+  res.render("index", { loggedInNavigation });
 });
 
 module.exports = router;
