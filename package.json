@@ -8,6 +8,7 @@
     "seed": "node seeds/recipes.seeds.js"
   },
   "dependencies": {
+    "@keyframes/core": "^2.0.10",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
