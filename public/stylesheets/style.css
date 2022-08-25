@@ -15,7 +15,7 @@ body {
 }
 
 body {
-  font: 14px 'Poppins', Arial, Helvetica, sans-serif;
+  font: 14px "Poppins", Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -24,7 +24,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'Butler', sans-serif;
+  font-family: "Butler", sans-serif;
 }
 
 a {
@@ -54,7 +54,7 @@ header {
 nav {
   display: flex;
   list-style: none;
-  font-family: 'Butler', sans-serif;
+  font-family: "Butler", sans-serif;
   font-size: large;
   /* width: 70%; */
 }
@@ -89,13 +89,13 @@ nav li a,
 }
 
 .form-page::before {
-  content: '';
+  content: "";
   position: fixed;
   left: 0;
   right: 0;
   z-index: -1;
   display: block;
-  background-image: url('../images/bg-form-img.jpg');
+  background-image: url("../images/bg-form-img.jpg");
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -136,13 +136,14 @@ form input {
   border-radius: 3px;
   align-self: center;
   width: 50%;
-  font-family: 'Butler', sans-serif;
+  font-family: "Butler", sans-serif;
   font-size: 20px;
 }
 
-/* .form-page button:hover{
-    background-color: var(--turquoise);
-  } */
+.form-page button:hover {
+  background-color: var(--turquoise);
+  color: white;
+}
 
 .recipe-list {
   flex-direction: column;
@@ -169,7 +170,7 @@ form input {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 3px;
-  font-family: 'Butler', sans-serif;
+  font-family: "Butler", sans-serif;
   font-size: 16px;
 }
 
@@ -203,7 +204,6 @@ git
   max-width: 1500px;
   flex-wrap: wrap;
   max-width: 90%;
-
   margin: 5rem 0 5rem 4.5rem;
 }
 
@@ -241,7 +241,7 @@ git
 
 .card-content a {
   color: var(--turquoise);
-  font-family: 'Butler', sans-serif;
+  font-family: "Butler", sans-serif;
   font-size: 20px;
 }
 
@@ -265,13 +265,13 @@ git
 }
 
 .home-page::before {
-  content: '';
+  content: "";
   position: fixed;
   left: 0;
   right: 0;
   z-index: -1;
   display: block;
-  background-image: url('../images/orange.jpg');
+  background-image: url("../images/orange.jpg");
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -295,6 +295,11 @@ git
   }
 }
 
+.home-page p {
+  color: white;
+  font-size: 1.2rem;
+}
+
 .detail-page {
   margin: 5rem 10rem;
 
@@ -311,7 +316,7 @@ git
 }
 
 .detail-page h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 .detail-page .minor {
@@ -345,26 +350,85 @@ git
   margin: 2rem 1rem 0 1rem;
 }
 
-.small-btn {
+.small-btn,
+.edit-page button {
   background-color: var(--pale-blue);
   padding: 1rem;
   border: none;
   border-radius: 3px;
   align-self: center;
 
-  font-family: 'Butler', sans-serif;
+  font-family: "Butler", sans-serif;
 }
 
-.small-btn:hover {
+.small-btn:hover,
+.edit-page button:hover {
   background-color: var(--turquoise);
   color: white;
 }
 
-.profile-page {
+.review h3,
+.comment h2 {
+  color: var(--pale-blue);
+}
+
+.comment textarea {
+  width: 50rem;
+  margin-bottom: 1rem;
+}
+
+.review,
+.comment {
+  margin-top: 1rem;
+}
+
+.profile-page,
+.edit-page,
+.edit-page section,
+.comment,
+.insert-box,
+.add-page,
+.add-page section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.edit-page,
+.add-page {
+  width: 100%;
+}
+
+.edit-page h1,
+.add-page h1 {
+  color: var(--pale-blue);
+}
+
+.edit-page label,
+.add-page label {
+  font-size: 1.5rem;
+}
+
+.edit-page section,
+.add-page section {
+  margin: 1rem;
+}
+
+.edit-page input,
+.edit-page textarea,
+.add-page input,
+.add-page textarea {
+  width: 30rem;
+}
+
+.edit-page button,
+.add-page button {
+  margin-left: 12.5rem;
+}
+
+.error-page {
+  margin: 2rem;
 }
 
 .heart-button-wrapper {

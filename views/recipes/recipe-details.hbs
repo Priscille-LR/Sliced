@@ -69,19 +69,34 @@
     </div>
   {{/unless}}
 
+  <div class="comment">
+    {{#if isNotCreator}}
+      <h2>Let us know what you think!</h2>
+      <form
+        class="insert-box"
+        action="/reviews/create/{{recipe._id}}"
+        method="POST"
+      >
+        <textarea name="comment" id="" cols="10" rows="5"></textarea>
+        <button class="small-btn" type="submit">Add</button>
+      </form>
+    {{/if}}
+  </div>
+  <hr />
   {{! if there are reviews, show them, if not, forget about it 🙃 }}
 
-  {{#if recipe.reviews}}
-    <h3>Reviews:</h3>
-    {{#each recipe.reviews}}
-      <p> <b>{{this.user.username}} said: </b> {{this.comment}} </p>
-      {{#if this.canBeChanged}}
-        <a href="/reviews/{{this._id}}">Edit</a>
-        <form action="/reviews/{{this._id}}" method="POST">
-          <button type="submit"> Delete </button>
-        </form>
-      {{/if}}
-    {{/each}}
-  {{/if}}
+  <div class="review">
+    {{#if recipe.reviews}}
+      <h3>Reviews:</h3>
+      {{#each recipe.reviews}}
+        <p> <b>{{this.user.username}} said: </b> "{{this.comment}}" </p>
+        {{#if this.canBeChanged}}
+          <a href="/reviews/{{this._id}}">Edit</a>
+          <form action="/reviews/{{this._id}}" method="POST">
+            <button type="submit"> Delete </button>
+          </form>
+        {{/if}}
+      {{/each}}
+    {{/if}}
+  </div>
 </div>
-

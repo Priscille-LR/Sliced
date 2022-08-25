@@ -1,47 +1,77 @@
-<h1>Create a new recipe</h1>
-<form action="/recipes/create" method="POST">
-  <label for="">Title</label>
-  <input type="text" name="title" id="title" />
+<div class="add-page">
+  <h1>Create a new recipe</h1>
+  <form action="/recipes/create" method="POST">
+    <section>
+      <label for="">Title</label>
+      <input type="text" name="title" id="title" />
+    </section>
 
-  <label for="level">Level</label>
-  <select name="level" id="level">
-    <option value="">--</option>
-    <option value="easy">Easy</option>
-    <option value="medium">Medium</option>
-    <option value="pro">Pro</option>
-  </select>
+    <section>
+      <label for="level">Level</label>
+      <select name="level" id="level">
+        <option value="">--</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="pro">Pro</option>
+      </select>
+    </section>
 
-  <label for="">Serves</label>
-  <input type="number" name="servings" id="servings" />
+    <section>
+      <label for="">Serves</label>
+      <input type="number" name="servings" id="servings" />
+    </section>
 
-  <label for="">Duration</label>
-  <input type="number" name="duration" id="duration" />
+    <section>
+      <label for="">Duration</label>
+      <input type="number" name="duration" id="duration" />
+    </section>
 
-  <label for="dishType">Dish type</label>
-  <select name="dishType" id="dishType">
-    <option value="">--</option>
-    <option value='Breakfast'>Breakfast</option>
-    <option value='Dessert'>Dessert</option>
-    <option value='Drink'>Drink</option>
-    <option value='Main Course'>Main course</option>
-    <option value='Side'>Side</option>
-    <option value='Snack'>Snack</option>
-    <option value='Other'>Other</option>
-  </select>
+    <section>
+      <label for="dishType">Dish type</label>
+      <select name="dishType" id="dishType">
+        <option value="">--</option>
+        <option value="Breakfast">Breakfast</option>
+        <option value="Dessert">Dessert</option>
+        <option value="Drink">Drink</option>
+        <option value="Main Course">Main course</option>
+        <option value="Side">Side</option>
+        <option value="Snack">Snack</option>
+        <option value="Other">Other</option>
+      </select>
+    </section>
 
-  <label for="">Image</label>
-  <input type="text" name="image" id="image" />
+    <section>
+      <label for="">Image</label>
+      <input type="text" name="image" id="image" />
+    </section>
 
-  <label for="">Introduction</label>
-  <textarea name="introduction" id="" cols="30" rows="10"></textarea>
+    <section>
+      <label for="">Introduction</label>
+      <textarea name="introduction" id="" cols="30" rows="10"></textarea>
+    </section>
 
-  <label for="">Ingredients</label>
-  <p>List the ingredients here, press Enter after each entry </p>
-  <textarea name="ingredients" id="ingredients" cols="30" rows="10"></textarea>
+    <section>
+      <label for="">Ingredients</label>
+      <p>List the ingredients here, press Enter after each entry </p>
+      <textarea
+        name="ingredients"
+        id="ingredients"
+        cols="30"
+        rows="10"
+      ></textarea>
+    </section>
 
-  <label for="">Instructions</label>
-    <p>List the instructions here, press Enter after each entry </p>
-  <textarea name="instructions" id="instructions" cols="30" rows="10"></textarea>
+    <section>
+      <label for="">Instructions</label>
+      <p>List the instructions here, press Enter after each entry </p>
+      <textarea
+        name="instructions"
+        id="instructions"
+        cols="30"
+        rows="10"
+      ></textarea>
+    </section>
 
-  <button type="submit">Create recipe</button>
-</form>
+    <button class="small-btn" type="submit">Create recipe</button>
+  </form>
+</div>

@@ -1,4 +1,4 @@
-<div class='recipe-list'>
+<div class="recipe-list">
   <h1>Recipes</h1>
   <form action='/recipes/list' method='GET' class='search-bar'>
     <input type='text' name='query' placeholder='search for ingredients' />
@@ -20,19 +20,20 @@
   </form>
 
   <div class='recipes'>
+
     {{#each recipes}}
-      <div class='recipe-card'>
-        <img src='{{this.image}}' alt='' width='300' />
-        <div class='card-content'>
-          <h3> <a href='/recipes/{{this._id}}'> {{this.title}} </a></h3>
-          <span class='duration'>🕒 {{this.duration}} mins</span>
-          <span class='servings'>Serves {{this.servings}}</span>
-          <span class='dish-type'>{{this.dishType}}</span>
+      <div class="recipe-card">
+        <img src="{{this.image}}" alt="" width="300" />
+        <div class="card-content">
+          <h3> <a href="/recipes/{{this._id}}"> {{this.title}} </a></h3>
+          <span class="duration">🕒 {{this.duration}} mins</span>
+          <span class="servings">Serves {{this.servings}}</span>
+          <span class="dish-type">{{this.dishType}}</span>
           {{!-- <p>{{this.introduction}}</p> --}}
         </div>
         {{#if this.isCreator}}
-          <form action='/recipes/{{this._id}}/delete' method='POST'>
-            <button type='submit'>Delete</button>
+          <form action="/recipes/{{this._id}}/delete" method="POST">
+            <button type="submit">Delete</button>
           </form>
         {{/if}}
       </div>
