@@ -1,24 +1,24 @@
-<div class="detail-page"> 
-<h1>{{recipe.title}}</h1>
-<p>Posted by: {{recipe.creator.username}}</p>
+<div class="detail-page">
+  <h1>{{recipe.title}}</h1>
+  <p>Posted by: {{recipe.creator.username}}</p>
 
-<form action='/recipes/favourites/{{recipe._id}}' method='POST'>
+  <form action="/recipes/favourites/{{recipe._id}}" method="POST">
 
-  {{#if isFavorite}}
-    <button class='heart-button-wrapper'>
-      <div class='heart-button liked'></div>
-    </button>
-  {{else}}
-    <button class='heart-button-wrapper'>
-      <div class='heart-button'></div>
-    </button>
+    {{#if isFavorite}}
+      <button class="heart-button-wrapper">
+        <div class="heart-button liked"></div>
+      </button>
+    {{else}}
+      <button class="heart-button-wrapper">
+        <div class="heart-button"></div>
+      </button>
+    {{/if}}
+    {{! <button>Add to my favourites</button> }}
+  </form>
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
   {{/if}}
-  {{! <button>Add to my favourites</button> }}
-</form>
-{{#if errorMessage}}
-  <p class='error'>{{errorMessage}}</p>
-{{/if}}
-<div class="minor">
+  <div class="minor">
     <span class="duration">🕒 {{recipe.duration}} mins</span>
     <span class="servings">Serves: {{recipe.servings}}</span>
     <span class="dish-type">{{recipe.dishType}}</span>
@@ -49,11 +49,6 @@
 
   {{! only shows if you're the creator  }}
   {{#unless isNotCreator}}
-  <h2>Let us know what you think!</h2>
-    <form action="/reviews/create/{{recipe._id}}" method="POST">
-      <textarea name="comment" id="" cols="10" rows="5"></textarea>
-      <button type="submit">Add</button>
-    </form>
 
     <div class="column">
       <div class="update-recipe">
@@ -80,6 +75,7 @@
         <textarea name="comment" id="" cols="10" rows="5"></textarea>
         <button class="small-btn" type="submit">Add</button>
       </form>
+
     {{/if}}
   </div>
   <hr />
