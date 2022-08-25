@@ -15,7 +15,7 @@ body {
 }
 
 body {
-  font: 14px "Poppins", Arial, Helvetica, sans-serif;
+  font: 14px 'Poppins', Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -24,7 +24,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Butler", sans-serif;
+  font-family: 'Butler', sans-serif;
 }
 
 a {
@@ -53,7 +53,7 @@ header {
 nav {
   display: flex;
   list-style: none;
-  font-family: "Butler", sans-serif;
+  font-family: 'Butler', sans-serif;
   font-size: large;
   /* width: 70%; */
 }
@@ -68,7 +68,7 @@ nav li a,
 .logout {
   font-size: 20px;
   color: var(--turquoise);
-  font-family: "Butler", sans-serif;
+  font-family: 'Butler', sans-serif;
 }
 
 .logout {
@@ -87,13 +87,13 @@ nav li a,
 }
 
 .form-page::before {
-  content: "";
+  content: '';
   position: fixed;
   left: 0;
   right: 0;
   z-index: -1;
   display: block;
-  background-image: url("../images/bg-form-img.jpg");
+  background-image: url('../images/bg-form-img.jpg');
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -134,7 +134,7 @@ form input {
   border-radius: 3px;
   align-self: center;
   width: 50%;
-  font-family: "Butler", sans-serif;
+  font-family: 'Butler', sans-serif;
   font-size: 20px;
 }
 
@@ -143,7 +143,8 @@ form input {
   color: white;
 }
 
-.recipe-list {
+.recipe-list,
+.error-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -170,7 +171,7 @@ form input {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 3px;
-  font-family: "Butler", sans-serif;
+  font-family: 'Butler', sans-serif;
   font-size: 16px;
 }
 
@@ -189,7 +190,7 @@ form input {
 }
 
 .dishType-select label {
-  font-family: "Butler", sans-serif;
+  font-family: 'Butler', sans-serif;
   font-size: 18px;
   color: var(--turquoise);
   margin-right: 1rem;
@@ -244,7 +245,7 @@ form input {
 
 .card-content a {
   color: var(--turquoise);
-  font-family: "Butler", sans-serif;
+  font-family: 'Butler', sans-serif;
   font-size: 20px;
 }
 
@@ -268,13 +269,13 @@ form input {
 }
 
 .home-page::before {
-  content: "";
+  content: '';
   position: fixed;
   left: 0;
   right: 0;
   z-index: -1;
   display: block;
-  background-image: url("../images/orange.jpg");
+  background-image: url('../images/orange.jpg');
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -283,7 +284,6 @@ form input {
 
 .home-title {
   color: white;
-
   animation-duration: 3s;
   animation-name: slidein;
 }
@@ -356,7 +356,6 @@ form input {
   margin: 5rem 0;
   font-style: italic;
   text-align: justify;
-
 }
 
 .edit-buttons {
@@ -420,7 +419,7 @@ form input {
   border-radius: 3px;
   align-self: center;
 
-  font-family: "Butler", sans-serif;
+  font-family: 'Butler', sans-serif;
 }
 
 .small-btn:hover,
@@ -505,8 +504,6 @@ form input {
   height: 30px;
 }
 
-
-
 .heart-button:before {
   position: absolute;
   top: -15px;
@@ -517,7 +514,7 @@ form input {
   height: 47px;
   border-radius: 40px 40px 0 0;
   background-color: var(--bg-darker);
-  content: "";
+  content: '';
   cursor: pointer;
   transition: background 0.4s;
 }
@@ -527,12 +524,12 @@ form input {
   top: -15px;
   left: 0;
   transform: rotate(45deg);
-  transform-origin :100% 100%;
+  transform-origin: 100% 100%;
   width: 30px;
   height: 47px;
   border-radius: 40px 40px 0 0;
   background-color: var(--bg-darker);
-  content: "";
+  content: '';
   cursor: pointer;
   transition: background 0.4s;
 }
@@ -598,16 +595,29 @@ footer p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 
 .networks-hinju span {
   margin-right: 0.5rem;
 }
 
-.error-recipe-list{
+.error-recipe-list {
   color: var(--turquoise);
   margin: 7rem 0;
   font-size: 36px;
   height: 15vh;
+}
+
+.error-page {
+  height: 95vh;
+}
+
+.error-page h2 {
+  color: var(--turquoise);
+  font-size: 36px;
+}
+
+.error-page a {
+  color: var(--turquoise);
+  text-decoration: underline;
 }
