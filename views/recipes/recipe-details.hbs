@@ -1,34 +1,36 @@
 <div class='details-page'>
-  <img src='{{recipe.image}}' alt='' />
-  <div class='heading'>
-    <h1>{{recipe.title}}</h1>
-    <p>Posted by: {{recipe.creator.username}}</p>
+  <div class='intro'>
+    <img src='{{recipe.image}}' alt='' />
+      <div class='intro-text'>
+    <div class='heading'>
+        <h1>{{recipe.title}}</h1>
+        <form action='/recipes/favourites/{{recipe._id}}' method='POST'>
+          {{#if isFavorite}}
+            <button class='heart-button-wrapper'>
+              <div class='heart-button liked'></div>
+            </button>
+          {{else}}
+            <button class='heart-button-wrapper'>
+              <div class='heart-button'></div>
+            </button>
+          {{/if}}
+        </form>
+        {{#if errorMessage}}
+          <p class='error'>{{errorMessage}}</p>
+        {{/if}}
+      </div>
 
-    <form action='/recipes/favourites/{{recipe._id}}' method='POST'>
+      <p>Posted by: {{recipe.creator.username}}</p>
+      <div class='minor'>
+        <span class='duration'>🕒 {{recipe.duration}} mins</span>
+        <span class='servings'>Serves: {{recipe.servings}}</span>
+        <span class='dish-type'>{{recipe.dishType}}</span>
+      </div>
 
-      {{#if isFavorite}}
-        <button class='heart-button-wrapper'>
-          <div class='heart-button liked'></div>
-        </button>
-      {{else}}
-        <button class='heart-button-wrapper'>
-          <div class='heart-button'></div>
-        </button>
-      {{/if}}
-      {{! <button>Add to my favourites</button> }}
-    </form>
-    {{#if errorMessage}}
-      <p class='error'>{{errorMessage}}</p>
-    {{/if}}
-    <div class='minor'>
-      <span class='duration'>🕒 {{recipe.duration}} mins</span>
-      <span class='servings'>Serves: {{recipe.servings}}</span>
-      <span class='dish-type'>{{recipe.dishType}}</span>
+      <p class='description'> {{recipe.introduction}}</p>
     </div>
-
-    <p class='description'> {{recipe.introduction}}</p>
   </div>
-  <div class='column'>
+  <div class='ingredients-directions'>
     <article class='ingredients'>
       <h2>Ingredients</h2>
       <ul>
@@ -50,11 +52,9 @@
 
   {{! only shows if you're the creator  }}
   {{#unless isNotCreator}}
-
-
-    <div class="column">
-      <div class="update-recipe">
-        <a href="/recipes/edit/{{recipe._id}}"><button class="small-btn">
+    <div class='edit-buttons'>
+      <div class='update-recipe'>
+        <a href='/recipes/edit/{{recipe._id}}'><button class='small-btn'>
             Update recipe</button></a>
       </div>
       <div class='delete-recipe'>
@@ -65,7 +65,7 @@
     </div>
   {{/unless}}
 
-  <div class="comment">
+  <div class='comment'>
     {{#if isNotCreator}}
       <h2>Let us know what you think!</h2>
       <form
@@ -76,25 +76,22 @@
         <textarea name="comment" id="" cols="10" rows="5"></textarea>
         <button class="small-btn" type="submit">Add</button>
       </form>
-
     {{/if}}
-
   </div>
-  <hr />
+  
   {{! if there are reviews, show them, if not, forget about it 🙃 }}
-
-  <div class="review">
+  <div class='review'>
     {{#if recipe.reviews}}
-    <h3>Reviews:</h3>
-    {{#each recipe.reviews}}
-      <p> <b>{{this.user.username}} said: </b> {{this.comment}} </p>
-      {{#if this.canBeChanged}}
-        <a href='/reviews/{{this._id}}'>Edit</a>
-        <form action='/reviews/{{this._id}}' method='POST'>
-          <button type='submit'> Delete </button>
-        </form>
-      {{/if}}
-    {{/each}}
-  {{/if}}
+      <h3>Reviews:</h3>
+      {{#each recipe.reviews}}
+        <p> <b>{{this.user.username}} said: </b> {{this.comment}} </p>
+        {{#if this.canBeChanged}}
+          <a href='/reviews/{{this._id}}'>Edit</a>
+          <form action='/reviews/{{this._id}}' method='POST'>
+            <button type='submit'> Delete </button>
+          </form>
+        {{/if}}
+      {{/each}}
+    {{/if}}
   </div>
 </div>

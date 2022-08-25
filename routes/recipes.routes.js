@@ -22,11 +22,10 @@ router.get("/list", (req, res) => {
         res.render("recipes/recipe-list", { recipes, loggedInNavigation });
       })
       .catch((err) => console.error(err));
-
-  } else if (dishType !== undefined) {
-    Recipe.find({
-      dishType: { $regex: new RegExp(dishType) },
-    })
+  } else if (dishType !== undefined){
+      Recipe.find({
+        dishType: { $regex: new RegExp(dishType) },
+      })
       .then((recipes) => {
         const loggedInNavigation = req.session.hasOwnProperty("currentUser");
         res.render("recipes/recipe-list", { recipes, loggedInNavigation });
@@ -63,7 +62,6 @@ router.post("/create", isLoggedIn, (req, res) => {
   const { _id } = req.session.currentUser;
   const ingredientsArr = ingredients.split("\n");
   const instructionsArr = instructions.split("\n");
-  // console.log("user id", _id);
   Recipe.create({
     title,
     level,
@@ -88,8 +86,6 @@ router.get('/id/:recipeId', (req, res) => {
   const _id = req.session?.currentUser?._id; // load property '_id' only if property 'currentUser' exists
   const { recipeId } = req.params;
   const favourites = req.session?.currentUser?.favouritesRecipes;
-
-  //console.log(isFavorite);
   Recipe.findOne({ _id: recipeId })
     .populate("creator")
     .populate({
@@ -191,7 +187,6 @@ router.post('/favourites/:recipeId', isLoggedIn, (req, res) => {
   const _id = req.session?.currentUser?._id;
   const favourites = req.session?.currentUser?.favouritesRecipes;
   const isFavorite = favourites.includes(recipeId);
-  console.log(favourites);
   //check if the recipe is already in the favourites -
   //if it is not, push it to the favourites, if it is, render the same page with an error msg
   if (isFavorite) {
