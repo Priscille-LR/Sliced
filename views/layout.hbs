@@ -25,7 +25,7 @@
           <li class='to-right'><a href='/recipes/list'>View Recipes</a></li>
           <li class='to-right'><a href='/recipes/create'>Create a recipe</a></li>
           <li class='to-right'><a href='/recipes/favourites'>My favourites</a></li>
-          <li class='to-right'><a href='/auth/profile'>Profile</a></li>
+          {{!-- <li class='to-right'><a href='/auth/profile'>Profile</a></li> --}}
           <li>
             <form id='logout-form' action='/auth/logout' method='POST'>
               <button class="logout">Logout</button>
@@ -56,11 +56,19 @@
 
     <footer>
       
-      <div>
-      <a href="#" class="fa fa-linkedin"></a>
-      <a href="#" class="fa fa-github"></a>
+      <div class='networks'>
+        <div class='networks-hinju'>
+          <span>Hsinju</span>
+          <a href="#" class="fa fa-linkedin"></a>
+          <a href="#" class="fa fa-github"></a>
+        </div>
+        <div class='networks-priscille'>
+          <span>Priscille</span>
+          <a href="#" class="fa fa-linkedin"></a>
+          <a href="#" class="fa fa-github"></a>
+        </div>
       </div>
-      <div>
+    
       <p>made by Hsinju & Priscille 
         <span role='image' aria-label='hamburger'>🥭🍓🍌🥝🍍🍑</span></p>
       <p>Ironhack Web Dev July 2022</p>

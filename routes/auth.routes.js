@@ -4,6 +4,10 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const {isLoggedOut, isLoggedIn} = require('../middleware/route-guard')
 
+const recipesRouter = require("./recipes.routes");
+//app.use("/recipes", recipesRouter);
+
+
 //SIGNUP
 
 router.get('/signup', isLoggedOut, (req, res) => {
@@ -36,18 +40,18 @@ router.post('/signup', isLoggedOut, (req, res) => {
     //console.log('Newly created user is: ', userFromDB);
     req.session.currentUser = user;
     //res.render('auth/profile', {user})
-    res.redirect('/auth/profile');
+    res.redirect('../recipes/list');
     //res.redirect('/auth/login');
   })
   .catch((error) => console.log(error));
 });
 
-router.get('/profile', isLoggedIn, (req, res) => {
-  const { username } = req.session.currentUser;
-  const loggedInNavigation = true;
-  res.render('auth/profile', { username, loggedInNavigation});
-  //res.render('auth/profile');
-});
+// router.get('/profile', isLoggedIn, (req, res) => {
+//   const { username } = req.session.currentUser;
+//   const loggedInNavigation = true;
+//   res.render('auth/profile', { username, loggedInNavigation});
+//   //res.render('auth/profile');
+// });
 
 
 //LOGIN
@@ -77,7 +81,7 @@ router.post('/login', isLoggedOut, (req, res) => {
           req.session.currentUser = user;
           console.log(user)
 
-          res.redirect('/auth/profile');
+          res.redirect('../recipes/list');
         } else {
           res.render('auth/login', { errorMessage: 'Incorrect password.' });
         }

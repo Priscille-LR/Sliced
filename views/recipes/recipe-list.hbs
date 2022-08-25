@@ -7,7 +7,7 @@
 
   <form action='/recipes/list' method='GET' class='dishType-select'>
     <label for='dishType'>Dish type</label>
-    <select name='dishType' id='dishType' onchange='if(this.value != 0) { this.form.submit(); }'>
+    <select name='dishType' id='dishType' onchange='this.form.submit();'>
       <option value=''>--</option>
       <option value='Breakfast'>Breakfast</option>
       <option value='Dessert'>Dessert</option>
@@ -25,7 +25,7 @@
       <div class="recipe-card">
         <img src="{{this.image}}" alt="" width="300" />
         <div class="card-content">
-          <h3> <a href="/recipes/{{this._id}}"> {{this.title}} </a></h3>
+          <h3> <a href="/recipes/id/{{this._id}}"> {{this.title}} </a></h3>
           <span class="duration">🕒 {{this.duration}} mins</span>
           <span class="servings">Serves {{this.servings}}</span>
           <span class="dish-type">{{this.dishType}}</span>

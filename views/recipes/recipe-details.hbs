@@ -1,34 +1,35 @@
-<div class="detail-page"> 
-<h1>{{recipe.title}}</h1>
-<p>Posted by: {{recipe.creator.username}}</p>
+<div class='details-page'>
+  <img src='{{recipe.image}}' alt='' />
+  <div class='heading'>
+    <h1>{{recipe.title}}</h1>
+    <p>Posted by: {{recipe.creator.username}}</p>
 
-<form action='/recipes/favourites/{{recipe._id}}' method='POST'>
+    <form action='/recipes/favourites/{{recipe._id}}' method='POST'>
 
-  {{#if isFavorite}}
-    <button class='heart-button-wrapper'>
-      <div class='heart-button liked'></div>
-    </button>
-  {{else}}
-    <button class='heart-button-wrapper'>
-      <div class='heart-button'></div>
-    </button>
-  {{/if}}
-  {{! <button>Add to my favourites</button> }}
-</form>
-{{#if errorMessage}}
-  <p class='error'>{{errorMessage}}</p>
-{{/if}}
-<div class="minor">
-    <span class="duration">🕒 {{recipe.duration}} mins</span>
-    <span class="servings">Serves: {{recipe.servings}}</span>
-    <span class="dish-type">{{recipe.dishType}}</span>
+      {{#if isFavorite}}
+        <button class='heart-button-wrapper'>
+          <div class='heart-button liked'></div>
+        </button>
+      {{else}}
+        <button class='heart-button-wrapper'>
+          <div class='heart-button'></div>
+        </button>
+      {{/if}}
+      {{! <button>Add to my favourites</button> }}
+    </form>
+    {{#if errorMessage}}
+      <p class='error'>{{errorMessage}}</p>
+    {{/if}}
+    <div class='minor'>
+      <span class='duration'>🕒 {{recipe.duration}} mins</span>
+      <span class='servings'>Serves: {{recipe.servings}}</span>
+      <span class='dish-type'>{{recipe.dishType}}</span>
+    </div>
+
+    <p class='description'> {{recipe.introduction}}</p>
   </div>
-
-  <p class="descrip"> {{recipe.introduction}}</p>
-  <img src="{{recipe.image}}" alt="" />
-
-  <div class="column">
-    <article class="ingredients">
+  <div class='column'>
+    <article class='ingredients'>
       <h2>Ingredients</h2>
       <ul>
         {{#each recipe.ingredients}}
@@ -37,7 +38,7 @@
       </ul>
     </article>
 
-    <article class="directions">
+    <article class='directions'>
       <h2>Directions</h2>
       <ol>
         {{#each recipe.instructions}}
@@ -49,21 +50,14 @@
 
   {{! only shows if you're the creator  }}
   {{#unless isNotCreator}}
-  <h2>Let us know what you think!</h2>
-    <form action="/reviews/create/{{recipe._id}}" method="POST">
-      <textarea name="comment" id="" cols="10" rows="5"></textarea>
-      <button type="submit">Add</button>
-    </form>
-
-    <div class="column">
-      <div class="update-recipe">
-        <a href="/recipes/edit/{{recipe._id}}"><button class="small-btn">
+    <div class='column'>
+      <div class='update-recipe'>
+        <a href='/recipes/edit/{{recipe._id}}'><button class='small-btn'>
             Update recipe</button></a>
-
       </div>
-      <div class="delete-recipe">
-        <form action="/recipes/delete/{{recipe._id}}" method="post">
-          <button class="small-btn" type="submit">Delete recipe</button>
+      <div class='delete-recipe'>
+        <form action='/recipes/delete/{{recipe._id}}' method='post'>
+          <button class='small-btn' type='submit'>Delete recipe</button>
         </form>
       </div>
     </div>
@@ -71,32 +65,28 @@
 
   <div class="comment">
     {{#if isNotCreator}}
-      <h2>Let us know what you think!</h2>
-      <form
-        class="insert-box"
-        action="/reviews/create/{{recipe._id}}"
-        method="POST"
-      >
-        <textarea name="comment" id="" cols="10" rows="5"></textarea>
-        <button class="small-btn" type="submit">Add</button>
-      </form>
-    {{/if}}
+    <h2>Let us know what you think!</h2>
+    <form action='/reviews/create/{{recipe._id}}' method='POST'>
+      <textarea name='comment' id='' cols='10' rows='5'></textarea>
+      <button type='submit'>Add</button>
+    </form>
+  {{/if}}
   </div>
   <hr />
   {{! if there are reviews, show them, if not, forget about it 🙃 }}
 
   <div class="review">
     {{#if recipe.reviews}}
-      <h3>Reviews:</h3>
-      {{#each recipe.reviews}}
-        <p> <b>{{this.user.username}} said: </b> "{{this.comment}}" </p>
-        {{#if this.canBeChanged}}
-          <a href="/reviews/{{this._id}}">Edit</a>
-          <form action="/reviews/{{this._id}}" method="POST">
-            <button type="submit"> Delete </button>
-          </form>
-        {{/if}}
-      {{/each}}
-    {{/if}}
+    <h3>Reviews:</h3>
+    {{#each recipe.reviews}}
+      <p> <b>{{this.user.username}} said: </b> {{this.comment}} </p>
+      {{#if this.canBeChanged}}
+        <a href='/reviews/{{this._id}}'>Edit</a>
+        <form action='/reviews/{{this._id}}' method='POST'>
+          <button type='submit'> Delete </button>
+        </form>
+      {{/if}}
+    {{/each}}
+  {{/if}}
   </div>
 </div>
