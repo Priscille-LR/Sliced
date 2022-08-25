@@ -26,6 +26,10 @@
   </form>
 
   <div class="recipes">
+    {{#if errorMessage}}
+      <h2 class="error-recipe-list">{{errorMessage}}</h2>
+    {{/if}}
+    
     {{#each recipes}}
       <div class="recipe-card">
         <img src="{{this.image}}" alt="" width="300" />

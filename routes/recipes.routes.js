@@ -27,8 +27,14 @@ router.get("/list", (req, res) => {
         dishType: { $regex: new RegExp(dishType) },
       })
       .then((recipes) => {
+        const errorMessage = recipes.length === 0 ? true : false
         const loggedInNavigation = req.session.hasOwnProperty("currentUser");
-        res.render("recipes/recipe-list", { recipes, loggedInNavigation });
+        if(errorMessage){
+          res.render("recipes/recipe-list", { recipes, loggedInNavigation, errorMessage: 'Sorry, no recipes matching your search... Try again with something else?' });
+        } else {
+          res.render("recipes/recipe-list", { recipes, loggedInNavigation });  
+        }
+        
       })
       .catch((err) => console.error(err));
   } else {

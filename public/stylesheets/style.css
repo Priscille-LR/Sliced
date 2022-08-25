@@ -604,3 +604,10 @@ footer p {
 .networks-hinju span {
   margin-right: 0.5rem;
 }
+
+.error-recipe-list{
+  color: var(--turquoise);
+  margin: 7rem 0;
+  font-size: 36px;
+  height: 15vh;
+}

@@ -71,7 +71,7 @@
         id="ingredients"
         cols="30"
         rows="10"
-      >{{recipe.ingredients}}</textarea>
+      >{{#recipe.ingredients}}{{.}}{{/recipe.ingredients}}</textarea>
     </section>
 
     <section>
@@ -81,7 +81,7 @@
         id=""
         cols="30"
         rows="10"
-      >{{recipe.instructions}}</textarea>
+      >{{#recipe.instructions}}{{.}}{{/recipe.instructions}}</textarea>
     </section>
 
     <button type="submit">Save changes</button>
