@@ -162,7 +162,7 @@ Recipe sharing platform - more on the healthy / vegan side though ;)
  - Recipe-details.hbs
     - Fetch the nutritional values for each recipe from an API
     - Display the calories and the macros (amount of protein, fat & carbs) using a pie chart
-    
+    - Display the rating for a recipe (probably star rating)
  - Success
     - Modal to show the user that the recipe has been created successfully
     - Modal to show the user that the recipe has been updtated successfully
@@ -181,4 +181,4 @@ Recipe sharing platform - more on the healthy / vegan side though ;)
 <br>
 
 ### Slides
-[Google Slides Link]
+[Google Slides Link](https://docs.google.com/presentation/d/1wxbeCvN9H6YmQqV0kc-sOdJ6e8VbicZcpHUurjqeBF8/edit#slide=id.p)
