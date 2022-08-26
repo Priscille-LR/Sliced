@@ -181,7 +181,7 @@ router.get('/favourites', (req, res) => {
       .populate('creator')
       .then((recipes) => {
         const loggedInNavigation = req.session.hasOwnProperty('currentUser');
-        res.render('recipes/recipe-list', { recipes, loggedInNavigation });
+        res.render('recipes/favourite-recipes', { recipes, loggedInNavigation });
       })
       .catch((err) => console.error(err));
   }

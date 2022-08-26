@@ -5,8 +5,6 @@ const saltRounds = 10;
 const {isLoggedOut, isLoggedIn} = require('../middleware/route-guard')
 const nodemailer = require("nodemailer");
 
-const recipesRouter = require("./recipes.routes");
-//app.use("/recipes", recipesRouter);
 
 
 //SIGNUP
