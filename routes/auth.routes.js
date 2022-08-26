@@ -3,6 +3,7 @@ const User = require('../models/User.model');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const {isLoggedOut, isLoggedIn} = require('../middleware/route-guard')
+const nodemailer = require("nodemailer");
 
 const recipesRouter = require("./recipes.routes");
 //app.use("/recipes", recipesRouter);
@@ -42,6 +43,31 @@ router.post('/signup', isLoggedOut, (req, res) => {
     //res.render('auth/profile', {user})
     res.redirect('../recipes/list');
     //res.redirect('/auth/login');
+  })
+  .then(async () => {
+    // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.office365.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: 'priscille.ironhack@outlook.fr', // generated ethereal user
+      pass: "testPLRIronHack", // generated ethereal password
+    },
+  });
+
+  console.log(email)
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+    from: '"Sliced" <priscille.ironhack@outlook.fr>', // sender address
+    to: email, // list of receivers
+    subject: "Inscription completed ✔", // Subject line
+    html: `
+    <h2>Welcome to Sliced</h2>
+    <p>You've been registered successfully!! You can now login to Sliced and start sharing your recipes!<p>
+    <a href="https://sliced-clean-recipes.herokuapp.com/auth/login">Login now</a>
+    `, // html body
+  });
   })
   .catch((error) => console.log(error));
 });
