@@ -165,10 +165,7 @@ Recipe sharing platform - more on the healthy / vegan side though ;)
     - Display the rating for a recipe (probably star rating)
  - Success
     - Modal to show the user that the recipe has been created successfully
-    - Modal to show the user that the recipe has been updtated successfully
-   
- - Signup 
-    - Confirm the subscription to the user by sending them an email 
+    - Modal to show the user that the recipe has been updtated successfully 
     
 <br>
 
