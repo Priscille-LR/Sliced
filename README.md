@@ -94,7 +94,8 @@ Recipe sharing platform - more on the healthy / vegan side though ;)
 
 ## Models
  
- - User 
+ - User
+   ```
     new Schema ({
       email: {
       type: String,
@@ -116,8 +117,9 @@ Recipe sharing platform - more on the healthy / vegan side though ;)
       type: [{ type: Schema.Types.ObjectId, ref: "Recipe" }]
     }
 		})
-          
-  - Recipe 
+   ```       
+  - Recipe
+    ```
     new Schema ({
 			title: { type: String, required: true, uniqueItems: true },
     level: {
@@ -148,13 +150,14 @@ Recipe sharing platform - more on the healthy / vegan side though ;)
     creator: { type: Schema.Types.ObjectId, ref: "User" },
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
     })
-    
-  - Review 
-		new Schema ({
-			 user: { type: Schema.Types.ObjectId, ref: "User" },
+    ```
+  - Review
+    ```
+    new Schema ({
+       user: { type: Schema.Types.ObjectId, ref: "User" },
        comment: { type: String, maxLength: 200 },
     })
-    
+    ```
     <br>
     
 ## Backlog => to implement
